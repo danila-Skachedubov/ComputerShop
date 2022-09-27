@@ -30,7 +30,8 @@ namespace ComputerShop
         
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
-            SqlConnection sqlCon = new SqlConnection(@"Data Source=DESKTOP-P5D357J\SQLEXPRESS;Initial Catalog=comp_magazin;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+            
+            SqlConnection sqlCon = new SqlConnection(Settings1.Default.connectionString);
             try
             {
                 if (sqlCon.State == ConnectionState.Closed)
