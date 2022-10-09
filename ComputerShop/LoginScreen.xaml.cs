@@ -64,12 +64,10 @@ namespace ComputerShop
                 sqlCon.Close();
             }
         }
-
         private string hashPassword(string pass)
         {
             var md5 = MD5.Create();
             var hash = md5.ComputeHash(Encoding.UTF8.GetBytes(pass));
-
             return Convert.ToBase64String(hash);
         }
     }
