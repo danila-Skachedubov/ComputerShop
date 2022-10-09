@@ -64,6 +64,7 @@ namespace ComputerShop
                 sqlCon.Close();
             }
         }
+
         private string hashPassword(string pass)
         {
             var md5 = MD5.Create();
