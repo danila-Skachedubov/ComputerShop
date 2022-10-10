@@ -12,7 +12,7 @@ namespace ComputerShop {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.1.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.10.0.0")]
     internal sealed partial class Settings1 : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings1 defaultInstance = ((Settings1)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings1())));
@@ -25,9 +25,9 @@ namespace ComputerShop {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=LAPTOP-JPKFKIK1;Initial Catalog=comp_magazin;Integrated Security=True" +
-            ";Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent" +
-            "=ReadWrite;MultiSubnetFailover=False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-P5D357J\\SQLEXPRESS;Initial Catalog=comp_magazin;Integrated Se" +
+            "curity=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;Applic" +
+            "ationIntent=ReadWrite;MultiSubnetFailover=False")]
         public string connectionString {
             get {
                 return ((string)(this["connectionString"]));

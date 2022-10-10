@@ -41,12 +41,14 @@ namespace ComputerShop
                     SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
                     sqlCmd.CommandType = CommandType.Text;
                     sqlCmd.Parameters.AddWithValue("@username", Username.Text);
-                    sqlCmd.Parameters.AddWithValue("@Password", hashPassword((Password.Password)));
+                    sqlCmd.Parameters.AddWithValue("@Password", hashPassword((Password.Password)));                 
+            
                     int count = Convert.ToInt32(sqlCmd.ExecuteScalar());
                     if (count > 0)
                     {
-                        MainWindow dashBoard = new MainWindow();
-                        dashBoard.Show();
+
+                        user_role();
+                       
                         this.Close();
                     }
                     else
@@ -63,6 +65,36 @@ namespace ComputerShop
             {
                 sqlCon.Close();
             }
+        }
+
+        private void user_role()
+        {
+            string Name = Username.Text;
+            SqlConnection sqlCon = new SqlConnection(Settings1.Default.connectionString);
+            string sql = "SELECT roles FROM users WHERE Login = @un";    
+            sqlCon.Open();
+
+            SqlParameter nameParam = new SqlParameter("@un", Name);
+
+            SqlCommand command = new SqlCommand(sql, sqlCon);
+            command.Parameters.Add(nameParam);
+
+            byte Form_Role = (byte)command.ExecuteScalar();
+
+            switch (Form_Role)
+            {
+                default:
+                case 1:
+                    MainWindow dashBoard = new MainWindow();
+                    dashBoard.Show();
+                    break;
+                case 2:
+                    MainWindow dashBoard2 = new MainWindow();
+                    dashBoard2.Show();
+                    break;
+            }
+            sqlCon.Close();
+
         }
         private string hashPassword(string pass)
         {
