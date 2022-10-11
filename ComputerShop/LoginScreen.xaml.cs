@@ -85,8 +85,9 @@ namespace ComputerShop
             {
                 default:
                 case 1:
-                    MainWindow dashBoard = new MainWindow();
-                    dashBoard.Show();
+                    User_window user_window = new User_window();
+                    user_window.Show();
+                    sqlCon.Close();
                     break;
                 case 2:
                     MainWindow dashBoard2 = new MainWindow();
