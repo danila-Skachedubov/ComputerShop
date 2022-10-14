@@ -1,0 +1,25 @@
+﻿<Window x:Class="ComputerShop.Add_user"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ComputerShop"
+        mc:Ignorable="d"
+        Title="Add_user" Height="450" Width="383">
+    <Grid>
+
+        <TextBox x:Name="Login_text" HorizontalAlignment="Left" Margin="75,60,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="196" Height="29"/>
+        <TextBox x:Name="Password_text" HorizontalAlignment="Left" Margin="75,117,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="196" Height="27"/>
+        <TextBlock HorizontalAlignment="Left" Margin="75,39,0,0" Text="Login" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="75,96,0,0" Text="Password" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <ComboBox DisplayMemberPath="value" x:Name="lIST_ROLE" HorizontalAlignment="Left" Height="21" Margin="90,354,0,0" VerticalAlignment="Top" Width="196"/>
+        <Button Content="Add" Click="btnAdd_Click" HorizontalAlignment="Left"  Margin="323,360,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="Name_text" HorizontalAlignment="Left" Margin="75,0,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Center" Width="196" Height="29"/>
+        <TextBox x:Name="Surname_text" HorizontalAlignment="Left" Margin="75,264,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="196" Height="29"/>
+        <TextBox x:Name="Email_text" HorizontalAlignment="Left" Margin="75,319,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="196" Height="29"/>
+        <TextBlock HorizontalAlignment="Left" Margin="75,182,0,0" Text="Name" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="75,243,0,0" Text="Surname" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="75,298,0,0" Text="Email" TextWrapping="Wrap" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>

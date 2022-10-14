@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Security.Cryptography;
+using System.Windows.Navigation;
 
 namespace ComputerShop
 {
@@ -27,7 +28,7 @@ namespace ComputerShop
             InitializeComponent();
         }
 
-        
+        //Data Source=DESKTOP-P5D357J\SQLEXPRESS;Initial Catalog=comp_magazin;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
             
