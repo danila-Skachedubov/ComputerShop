@@ -32,6 +32,7 @@ namespace ComputerShop
         private DataSet DealTable;
         public User_window()
         {
+        
             InitializeComponent();
         }
 
@@ -43,7 +44,7 @@ namespace ComputerShop
             UsersGrid.ItemsSource = null;
             sqlCon.Close();
         }
-        /* private void btnShow_Click(object sender, RoutedEventArgs e)
+         private void btnShow_Click(object sender, RoutedEventArgs e)
          {
 
              SqlConnection sqlCon = new SqlConnection(Settings1.Default.connectionString);
@@ -54,7 +55,15 @@ namespace ComputerShop
                      sqlCon.Open();
                      String query = "SELECT * FROM users";
 
-                     SqlCommand createCommand = new SqlCommand(query, sqlCon);
+                    int selectedColumn = UsersGrid.CurrentCell.Column.DisplayIndex;
+                    var selectedCell = UsersGrid.SelectedCells[selectedColumn];
+                    var cellContent = selectedCell.Column.GetCellContent(selectedCell.Item);
+                    if (cellContent is TextBlock)
+                    {
+                        MessageBox.Show((cellContent as TextBlock).Text);
+                    }
+
+                    SqlCommand createCommand = new SqlCommand(query, sqlCon);
                      createCommand.ExecuteNonQuery();
 
                      SqlDataAdapter dataAdp = new SqlDataAdapter(createCommand);
@@ -74,7 +83,7 @@ namespace ComputerShop
              {
                  sqlCon.Close();
              }
-         }*/
+         }
         
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {

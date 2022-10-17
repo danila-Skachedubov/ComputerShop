@@ -17,7 +17,8 @@
         <Button Content="clear users" x:Name="btnShow_Copy" Click="btnClear_Click" HorizontalAlignment="Left" Margin="445,72,0,0" VerticalAlignment="Top" Grid.Column="1" />
         <Button Content="add users" x:Name="btnShow_Copy1" Click="btnAdd_Click" HorizontalAlignment="Left" Margin="446,115,0,0" VerticalAlignment="Top" Grid.Column="1"  />
         <Button Content="Назад" Click="btnBack_Click" HorizontalAlignment="Left" Margin="514,282,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-        <DataGrid Grid.ColumnSpan="2" Margin="0,0,261,239" x:Name="UsersGrid"  AutoGenerateColumns="False"  AlternatingRowBackground="#FFC4B0B0">
+        <DataGrid Grid.ColumnSpan="2" Margin="0,0,261,239" x:Name="UsersGrid"  AutoGenerateColumns="False"  AlternatingRowBackground="#FFC4B0B0" SelectionMode="Single">
+
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding id}" Width="*" Header="Id"/>
                 <DataGridTextColumn Binding="{Binding login}" Width="*" Header="Login"/>
