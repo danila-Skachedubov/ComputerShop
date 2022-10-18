@@ -1,5 +1,6 @@
 ﻿using Microsoft.Office.Interop.Excel;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
@@ -109,12 +110,50 @@ namespace ComputerShop
         {
 
         }
-
+        
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             Add_user LoginScreen = new Add_user();
             LoginScreen.Show();
             
+        }
+        private void DeleteRow(int id)
+        {
+
+            SqlConnection sqlCon = new SqlConnection(Settings1.Default.connectionString);
+            if (sqlCon.State == ConnectionState.Closed)
+                try
+                {
+                    string query = "DELETE FROM users WHERE (id = @id)";
+                    SqlCommand MySqlCommand = new SqlCommand(query, sqlCon);
+                    //параметризованный запрос
+
+                    sqlCon.Open();
+                    //создаём команду
+
+                    //создаем параметр и добавляем его в коллекцию
+                    MySqlCommand.Parameters.AddWithValue("@id", id);
+                    //выполняем sql запрос
+                    MySqlCommand.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            
+        }
+
+        private void btnDel_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("Вы действительно хотите удалить пользователя", "Уведомление", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+               
+
+                DataRowView drv = (DataRowView)UsersGrid.SelectedItem;
+                int id2 = (int)drv["id"];
+
+                DeleteRow(id2);
+            }
         }
     }
 }
