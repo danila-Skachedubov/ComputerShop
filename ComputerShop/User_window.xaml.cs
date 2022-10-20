@@ -51,31 +51,23 @@ namespace ComputerShop
              SqlConnection sqlCon = new SqlConnection(Settings1.Default.connectionString);
              try
              {
-                 if (sqlCon.State == ConnectionState.Closed)
-                 {
-                     sqlCon.Open();
-                     String query = "SELECT * FROM users";
-
-                    int selectedColumn = UsersGrid.CurrentCell.Column.DisplayIndex;
-                    var selectedCell = UsersGrid.SelectedCells[selectedColumn];
-                    var cellContent = selectedCell.Column.GetCellContent(selectedCell.Item);
-                    if (cellContent is TextBlock)
-                    {
-                        MessageBox.Show((cellContent as TextBlock).Text);
-                    }
-
+                if (sqlCon.State == ConnectionState.Closed)
+                {
+                    UsersGrid.ItemsSource = null;
+                    
+                    String query = "SELECT * FROM users";
                     SqlCommand createCommand = new SqlCommand(query, sqlCon);
-                     createCommand.ExecuteNonQuery();
 
-                     SqlDataAdapter dataAdp = new SqlDataAdapter(createCommand);
-                    System.Data.DataTable dt = new System.Data.DataTable("Students"); // В скобках указываем название таблицы
-                     dataAdp.Fill(dt);
-                     UsersGrid.ItemsSource = dt.DefaultView; // Сам вывод 
-                     sqlCon.Close();
+                    SqlDataAdapter dataAdp = new SqlDataAdapter(createCommand);
+                    System.Data.DataTable dt = new System.Data.DataTable("Users");
+                    dataAdp.Fill(dt);
+                    UsersGrid.ItemsSource = dt.DefaultView;
+                    sqlCon.Close();
 
-
-                 }
-             }
+                }
+            }
+             
+             
              catch (Exception ex)
              {
                  MessageBox.Show(ex.Message);
@@ -106,10 +98,7 @@ namespace ComputerShop
             UsersGrid.ItemsSource = dt.DefaultView;
         }
 
-        private void btnShow_Copy1_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+       
         
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {

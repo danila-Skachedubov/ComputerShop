@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.Intrinsics.X86;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -48,31 +49,42 @@ namespace ComputerShop
             int roles = 0;
             string CurrentRole = lIST_ROLE.Text;
             String query = "INSERT INTO [users] (login, password, roles, name, surname, email) VALUES (@login, @password, @roles, @name, @surname, @email)";
-            SqlCommand createCommand = new SqlCommand(query, sqlCon);
-            switch (CurrentRole)
+            String query_replay = "SELECT login, email FROM  users WHERE login = 'user.Login' OR email = 'user.Email' ";
+            SqlCommand com = new SqlCommand(query_replay, sqlCon);
+            var smth = com.ExecuteScalar();
+            if (smth != null)
             {
-                case "Администратор":
-                    roles = 1;
-                    break;
-                case "Менеджер":
-                    roles = 2;
-                    break;
-                case "Пользователь":
-                    roles = 3;
-                    break;
-                default:
-                    MessageBox.Show("Выберите роль!");
-                    break;
-            }
-            createCommand.Parameters.AddWithValue("login", Login_text.Text);
-            createCommand.Parameters.AddWithValue("password", Password_text.Text);
-            createCommand.Parameters.AddWithValue("roles", roles);
-            createCommand.Parameters.AddWithValue("name", Name_text.Text);
-            createCommand.Parameters.AddWithValue("surname", Surname_text.Text);
-            createCommand.Parameters.AddWithValue("email", Email_text.Text);
+         
+                SqlCommand createCommand = new SqlCommand(query, sqlCon);
+                     switch (CurrentRole)
+                        {
+                            case "Администратор":
+                                roles = 1;
+                                break;
+                            case "Менеджер":
+                                roles = 2;
+                                break;
+                            case "Пользователь":
+                                roles = 3;
+                                break;
+                            default:
+                                MessageBox.Show("Выберите роль!");
+                                break;
+                          }
+                createCommand.Parameters.AddWithValue("login", Login_text.Text);
+                createCommand.Parameters.AddWithValue("password", Password_text.Text);
+                createCommand.Parameters.AddWithValue("roles", roles);
+                createCommand.Parameters.AddWithValue("name", Name_text.Text);
+                createCommand.Parameters.AddWithValue("surname", Surname_text.Text);
+                createCommand.Parameters.AddWithValue("email", Email_text.Text);
             
 
-            MessageBox.Show(createCommand.ExecuteNonQuery().ToString());
+                MessageBox.Show(createCommand.ExecuteNonQuery().ToString());
+            }
+            else
+                MessageBox.Show("Пользователь с таким логином или почтой уже существует");
         }
+        
+
     }
 }
