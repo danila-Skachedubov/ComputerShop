@@ -1,149 +1,94 @@
-﻿using Microsoft.Office.Interop.Excel;
+﻿using System.Data.SqlClient;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-
 
 namespace ComputerShop
 {
     /// <summary>
     /// Логика взаимодействия для User_window.xaml
     /// </summary>
-    public partial class User_window : System.Windows.Window
+    public partial class User_window : Window
     {
-        private SqlDataAdapter _adapter = null;
-       
-        private SqlCommandBuilder builder;
-        private DataSet DealTable;
         public User_window()
         {
-        
             InitializeComponent();
-        }
-
-
-        private void btnClear_Click(object sender, RoutedEventArgs e)
-        {
             SqlConnection sqlCon = new SqlConnection(Settings1.Default.connectionString);
             sqlCon.Open();
-            UsersGrid.ItemsSource = null;
-            sqlCon.Close();
+            String query = "SELECT name_category FROM category";
+            SqlCommand createCommand = new SqlCommand(query, sqlCon);
+
+            SqlDataAdapter dataAdp = new SqlDataAdapter(createCommand);
+            System.Data.DataTable dt = new System.Data.DataTable("roles_user");
+            dataAdp.Fill(dt);
+            //UsersGrid.ItemsSource = dt.DefaultView;
+            Category.ItemsSource = dt.DefaultView;
         }
-         private void btnShow_Click(object sender, RoutedEventArgs e)
-         {
-
-             SqlConnection sqlCon = new SqlConnection(Settings1.Default.connectionString);
-             try
-             {
-                if (sqlCon.State == ConnectionState.Closed)
-                {
-                    UsersGrid.ItemsSource = null;
-                    
-                    String query = "SELECT * FROM users";
-                    SqlCommand createCommand = new SqlCommand(query, sqlCon);
-
-                    SqlDataAdapter dataAdp = new SqlDataAdapter(createCommand);
-                    System.Data.DataTable dt = new System.Data.DataTable("Users");
-                    dataAdp.Fill(dt);
-                    UsersGrid.ItemsSource = dt.DefaultView;
-                    sqlCon.Close();
-
-                }
-            }
-             
-             
-             catch (Exception ex)
-             {
-                 MessageBox.Show(ex.Message);
-             }
-             finally
-             {
-                 sqlCon.Close();
-             }
-         }
-        
-        private void btnBack_Click(object sender, RoutedEventArgs e)
-        {
-            LoginScreen LoginScreen = new LoginScreen();
-            LoginScreen.Show();
-            this.Close();
-        }
-
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             SqlConnection sqlCon = new SqlConnection(Settings1.Default.connectionString);
             sqlCon.Open();
-            String query = "SELECT * FROM users";
+            String query = "SELECT name_product, price, country, manufacturer FROM product";
             SqlCommand createCommand = new SqlCommand(query, sqlCon);
 
             SqlDataAdapter dataAdp = new SqlDataAdapter(createCommand);
-            System.Data.DataTable dt = new System.Data.DataTable("Users");
+            System.Data.DataTable dt = new System.Data.DataTable("product");
             dataAdp.Fill(dt);
-            UsersGrid.ItemsSource = dt.DefaultView;
+            ProductGrid.ItemsSource = dt.DefaultView;
         }
 
-       
-        
-        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        private void btnShow_Click(object sender, RoutedEventArgs e)
         {
-            Add_user LoginScreen = new Add_user();
-            LoginScreen.Show();
+            string CurrentCategory = Category.Text;
+            int id_category = 0;
             
-        }
-        private void DeleteRow(int id)
-        {
 
-            SqlConnection sqlCon = new SqlConnection(Settings1.Default.connectionString);
-            if (sqlCon.State == ConnectionState.Closed)
-                try
-                {
-                    string query = "DELETE FROM users WHERE (id = @id)";
-                    SqlCommand MySqlCommand = new SqlCommand(query, sqlCon);
-                    //параметризованный запрос
-
-                    sqlCon.Open();
-                    //создаём команду
-
-                    //создаем параметр и добавляем его в коллекцию
-                    MySqlCommand.Parameters.AddWithValue("@id", id);
-                    //выполняем sql запрос
-                    MySqlCommand.ExecuteNonQuery();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            
-        }
-
-        private void btnDel_Click(object sender, RoutedEventArgs e)
-        {
-            if (MessageBox.Show("Вы действительно хотите удалить пользователя", "Уведомление", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            switch (CurrentCategory)
             {
-               
-
-                DataRowView drv = (DataRowView)UsersGrid.SelectedItem;
-                int id2 = (int)drv["id"];
-
-                DeleteRow(id2);
+                case ("Видеокарта"):
+                    id_category = 1;
+                    break;
+                case ("Процессор"):
+                    id_category = 2;
+                    break;
+                case ("Корпус"):
+                    id_category = 3;
+                    break;
+                case ("Оперативная память"):
+                    id_category = 4;
+                    break;
+                case ("Жесткий диск"):
+                    id_category = 5;
+                    break;
+                case ("Клавиатура"):
+                    id_category = 6;
+                    break;
+                case ("Мышь"):
+                    id_category = 7;
+                    break;
+                case ("Монитор"):
+                    id_category = 8;
+                    break;
+                case ("Блок питания"):
+                    id_category = 9;
+                    break;
+                case ("Материнская плата"):
+                    id_category = 10;
+                    break;
+                default:
+                    MessageBox.Show("Выберите категорию!");
+                    break;
             }
+            SqlParameter nameParam = new SqlParameter("@id", id_category);
+            string query_id = "SELECT name_product, price, country, manufacturer FROM product WHERE id_product = @id";
+            SqlConnection sqlCon = new SqlConnection(Settings1.Default.connectionString);
+            sqlCon.Open();
+            SqlCommand command = new SqlCommand(query_id, sqlCon);
+            command.Parameters.Add(nameParam);
+            SqlDataAdapter dataAdp = new SqlDataAdapter(command);
+            System.Data.DataTable dt = new System.Data.DataTable("product");
+            dataAdp.Fill(dt);
+            ProductGrid.ItemsSource = dt.DefaultView;
+
         }
     }
 }
-

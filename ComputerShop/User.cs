@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ComputerShop
+﻿namespace ComputerShop
 {
     class User
     {
@@ -15,7 +9,7 @@ namespace ComputerShop
         private string surname;
         private string email;
 
-      
+
 
         internal string Login { get => login; set => login = value; }
         internal string Password { get => password; set => password = value; }

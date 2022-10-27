@@ -1,0 +1,36 @@
+﻿<Window x:Class="ComputerShop.Admin_window"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ComputerShop"
+        mc:Ignorable="d"
+        Loaded="Window_Loaded"
+        Title="User_window" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="27*"/>
+        </Grid.ColumnDefinitions>
+
+        <Button Content="обновить" Name="btnShow" Click="btnShow_Click" HorizontalAlignment="Left" Margin="445,10,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <Button Content="clear users" x:Name="btnShow_Copy" Click="btnClear_Click" HorizontalAlignment="Left" Margin="445,72,0,0" VerticalAlignment="Top" Grid.Column="1" />
+        <Button Content="add users" x:Name="btnShow_Copy1" Click="btnAdd_Click" HorizontalAlignment="Left" Margin="446,115,0,0" VerticalAlignment="Top" Grid.Column="1"  />
+        <Button Content="Назад" Click="btnBack_Click" HorizontalAlignment="Left" Margin="514,282,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <DataGrid Grid.ColumnSpan="2" Margin="0,0,261,239" x:Name="UsersGrid"  AutoGenerateColumns="False"  AlternatingRowBackground="#FFC4B0B0" SelectionMode="Single">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding id}" Width="*" Header="Id"/>
+                <DataGridTextColumn Binding="{Binding login}" Width="*" Header="Login"/>
+                <DataGridTextColumn Binding="{Binding password}" Width="*" Header="Password"/>
+                <DataGridTextColumn Binding="{Binding roles}" Width="*" Header="Roles"/>
+                <DataGridTextColumn Binding="{Binding name}" Width="*" Header="Name"/>
+                <DataGridTextColumn Binding="{Binding surname}" Width="*" Header="Surname"/>
+                <DataGridTextColumn Binding="{Binding email}" Width="*" Header="Email"/>
+            </DataGrid.Columns>
+        </DataGrid >
+        <Button Content="remove" x:Name="btnRemove" Click="btnDel_Click" HorizontalAlignment="Left" Margin="445,202,0,0" VerticalAlignment="Top" Grid.Column="1"  />
+
+
+    </Grid>
+</Window>
