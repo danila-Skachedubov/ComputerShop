@@ -2,6 +2,7 @@
 {
     class User
     {
+        private int id;
         private string login;
         private string password;
         private int role;
@@ -9,8 +10,7 @@
         private string surname;
         private string email;
 
-
-
+        internal int Id { get => id; set => id = value; }
         internal string Login { get => login; set => login = value; }
         internal string Password { get => password; set => password = value; }
         internal int Role { get => role; set => role = value; }

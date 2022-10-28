@@ -23,6 +23,7 @@ namespace ComputerShop
             dataAdp.Fill(dt);
             //UsersGrid.ItemsSource = dt.DefaultView;
             Category.ItemsSource = dt.DefaultView;
+            CreateOrder();
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -79,6 +80,7 @@ namespace ComputerShop
                     MessageBox.Show("Выберите категорию!");
                     break;
             }
+            
             SqlParameter nameParam = new SqlParameter("@id", id_category);
             string query_id = "SELECT name_product, price, country, manufacturer FROM product WHERE id_product = @id";
             SqlConnection sqlCon = new SqlConnection(Settings1.Default.connectionString);
@@ -95,34 +97,67 @@ namespace ComputerShop
         private void btnOrder_Click(object sender, RoutedEventArgs e)
         {
             DataRowView drv = (DataRowView)ProductGrid.SelectedItem;
-            string id2 = (string)drv["Name product"];
+            string name = (string)drv["name_product"];
 
-            DeleteRow(id2);
+           
+            int g = AddToOrder(name);
+            /*LoginScreen id = new LoginScreen();
+            int idUser = id.user_id();*/
+            string query = "INSERT INTO [order_product] (id_product) VALUES (@id_product)";
+            /*добавить айди заказа*/
+            SqlConnection con = new SqlConnection(Settings1.Default.connectionString);
+            con.Open();
+            SqlCommand com = new SqlCommand(query, con);
+            com.Parameters.AddWithValue("id_product", g);
+
         }
-        private void DeleteRow(string id)
+        private static int AddToOrder(string name)
         {
 
             SqlConnection sqlCon = new SqlConnection(Settings1.Default.connectionString);
+
+            int id = 0;
             if (sqlCon.State == ConnectionState.Closed)
                 try
                 {
-                    string query = "INSERT INTO [order] (login, password, roles, name, surname, email) VALUES (@login, @password, @roles, @name, @surname, @email";
+                    string query = "SELECT id_product FROM product WHERE name_product = @name";
                     SqlCommand MySqlCommand = new SqlCommand(query, sqlCon);
-                    //параметризованный запрос
-
                     sqlCon.Open();
-                    //создаём команду
-
-                    //создаем параметр и добавляем его в коллекцию
-                    MySqlCommand.Parameters.AddWithValue("@id", id);
-                    //выполняем sql запрос
+                    MySqlCommand.Parameters.AddWithValue("@name", name);
                     MySqlCommand.ExecuteNonQuery();
+                    id = Convert.ToInt32(MySqlCommand.ExecuteScalar());
+                    
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
+                    return 0;
                 }
+            return id;
+        }
 
+        private static void CreateOrder()
+        {
+            LoginScreen id_user = new LoginScreen();
+            int id = id_user.user_id();
+            int cost = 0;
+            try
+            {
+                SqlConnection sqlCon = new SqlConnection(Settings1.Default.connectionString);
+                sqlCon.Open();
+                string queryToCreateOrder = "INSERT INTO [order] (id_user, date, cost_order) VALUES (@id, @date, @cost)";
+                SqlCommand com = new SqlCommand(queryToCreateOrder, sqlCon);
+                com.Parameters.AddWithValue("@id", id);
+                com.Parameters.AddWithValue("@date", DateTime.Now);
+                com.Parameters.AddWithValue("@cost", cost);
+                com.ExecuteNonQuery();
+                id = Convert.ToInt32(com.ExecuteScalar());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            
+            }
         }
     }
 }

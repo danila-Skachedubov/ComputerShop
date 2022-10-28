@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Data.SqlTypes;
 using System.Security.Cryptography;
 using System.Text;
 using System.Windows;
@@ -28,12 +29,15 @@ namespace ComputerShop
                 {
                     sqlCon.Open();
                     String query = "SELECT * FROM users  WHERE Login=@Username AND Password =@password";
+                    
                     SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
                     sqlCmd.CommandType = CommandType.Text;
                     sqlCmd.Parameters.AddWithValue("@username", Username.Text);
                     sqlCmd.Parameters.AddWithValue("@Password", hashPassword((Password.Password)));
 
                     int count = Convert.ToInt32(sqlCmd.ExecuteScalar());
+
+                    
                     if (count > 0)
                     {
 
@@ -55,6 +59,22 @@ namespace ComputerShop
             {
                 sqlCon.Close();
             }
+        }
+
+        internal int user_id()
+        {
+            string Name = Username.Text;
+            SqlConnection sqlCon = new SqlConnection(Settings1.Default.connectionString);
+            string sql = "SELECT id FROM users WHERE Login = @un";
+            sqlCon.Open();
+
+            SqlParameter nameParam = new SqlParameter("@un", Name);
+
+            SqlCommand command = new SqlCommand(sql, sqlCon);
+            command.Parameters.Add(nameParam);
+
+            int count = Convert.ToInt32(command.ExecuteScalar());
+            return count;
         }
 
         private void user_role()
