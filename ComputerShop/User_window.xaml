@@ -18,5 +18,6 @@
         </DataGrid>
         <ComboBox DisplayMemberPath="name_category" x:Name="Category" HorizontalAlignment="Left" Height="21" Margin="544,40,0,0" VerticalAlignment="Top" Width="196"/>
         <Button Content="Show" Click="btnShow_Click" HorizontalAlignment="Left" Margin="629,121,0,0" VerticalAlignment="Top"/>
+        <Button Content="order" Click="btnOrder_Click" HorizontalAlignment="Left" Margin="574,298,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

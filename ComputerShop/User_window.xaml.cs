@@ -1,6 +1,7 @@
 ﻿using System.Data.SqlClient;
 using System;
 using System.Windows;
+using System.Data;
 
 namespace ComputerShop
 {
@@ -88,6 +89,39 @@ namespace ComputerShop
             System.Data.DataTable dt = new System.Data.DataTable("product");
             dataAdp.Fill(dt);
             ProductGrid.ItemsSource = dt.DefaultView;
+
+        }
+
+        private void btnOrder_Click(object sender, RoutedEventArgs e)
+        {
+            DataRowView drv = (DataRowView)ProductGrid.SelectedItem;
+            string id2 = (string)drv["Name product"];
+
+            DeleteRow(id2);
+        }
+        private void DeleteRow(string id)
+        {
+
+            SqlConnection sqlCon = new SqlConnection(Settings1.Default.connectionString);
+            if (sqlCon.State == ConnectionState.Closed)
+                try
+                {
+                    string query = "INSERT INTO [order] (login, password, roles, name, surname, email) VALUES (@login, @password, @roles, @name, @surname, @email";
+                    SqlCommand MySqlCommand = new SqlCommand(query, sqlCon);
+                    //параметризованный запрос
+
+                    sqlCon.Open();
+                    //создаём команду
+
+                    //создаем параметр и добавляем его в коллекцию
+                    MySqlCommand.Parameters.AddWithValue("@id", id);
+                    //выполняем sql запрос
+                    MySqlCommand.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
 
         }
     }
