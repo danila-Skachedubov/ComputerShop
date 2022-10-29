@@ -29,7 +29,6 @@ namespace ComputerShop
                 {
                     sqlCon.Open();
                     String query = "SELECT * FROM users  WHERE Login=@Username AND Password =@password";
-                    
                     SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
                     sqlCmd.CommandType = CommandType.Text;
                     sqlCmd.Parameters.AddWithValue("@username", Username.Text);

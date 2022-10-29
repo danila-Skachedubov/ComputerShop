@@ -101,14 +101,25 @@ namespace ComputerShop
 
            
             int g = AddToOrder(name);
-            /*LoginScreen id = new LoginScreen();
-            int idUser = id.user_id();*/
-            string query = "INSERT INTO [order_product] (id_product) VALUES (@id_product)";
-            /*добавить айди заказа*/
+    
+            string queryIdOrder = "SELECT * FROM [order]";
+           
+            SqlConnection con = new SqlConnection(Settings1.Default.connectionString);
+           con.Open();            
+            SqlCommand com2 = new SqlCommand(queryIdOrder, con);
+            int id = Convert.ToInt32(com2.ExecuteScalar());
+            order_product(id, g);
+        }
+
+        private void order_product(int id_order, int id_product)
+        {
+            string query = "INSERT [order_product] (id_order, id_product) VALUES ('49', '2')";
             SqlConnection con = new SqlConnection(Settings1.Default.connectionString);
             con.Open();
             SqlCommand com = new SqlCommand(query, con);
-            com.Parameters.AddWithValue("id_product", g);
+
+            com.Parameters.AddWithValue("id_order", id_order);
+            com.Parameters.AddWithValue("id_product", id_product);
 
         }
         private static int AddToOrder(string name)
@@ -150,7 +161,7 @@ namespace ComputerShop
                 com.Parameters.AddWithValue("@id", id);
                 com.Parameters.AddWithValue("@date", DateTime.Now);
                 com.Parameters.AddWithValue("@cost", cost);
-                com.ExecuteNonQuery();
+                
                 id = Convert.ToInt32(com.ExecuteScalar());
             }
             catch (Exception ex)
@@ -158,6 +169,14 @@ namespace ComputerShop
                 MessageBox.Show(ex.Message);
             
             }
+        }
+
+        private void Test(object sender, RoutedEventArgs e)
+        {
+            string queryToorder_product = "INSERT INTO [order_product] (id_order, id_product) VALUES ('52', '2')";
+            SqlConnection sqlCon = new SqlConnection(Settings1.Default.connectionString);
+            sqlCon.Open();
+            SqlCommand com = new SqlCommand(queryToorder_product, sqlCon);
         }
     }
 }
