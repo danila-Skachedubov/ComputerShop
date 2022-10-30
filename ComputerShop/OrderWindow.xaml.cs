@@ -15,13 +15,18 @@ using System.Windows.Shapes;
 namespace ComputerShop
 {
     /// <summary>
-    /// Логика взаимодействия для Order.xaml
+    /// Логика взаимодействия для OrderWindow.xaml
     /// </summary>
-    public partial class Order : Window
+    public partial class OrderWindow : Window
     {
-        public Order()
+        public OrderWindow()
         {
             InitializeComponent();
+        }
+
+        private void Window_loaded(object sender, RoutedEventArgs e)
+        {
+            string queryToOrder_product = "SELECT ";
         }
     }
 }

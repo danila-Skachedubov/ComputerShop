@@ -113,14 +113,14 @@ namespace ComputerShop
 
         private void order_product(int id_order, int id_product)
         {
-            string query = "INSERT [order_product] (id_order, id_product) VALUES ('49', '2')";
+            string query = "INSERT [order_product] (id_order, id_product) VALUES (@id_order, @id_product)";
             SqlConnection con = new SqlConnection(Settings1.Default.connectionString);
             con.Open();
             SqlCommand com = new SqlCommand(query, con);
 
             com.Parameters.AddWithValue("id_order", id_order);
             com.Parameters.AddWithValue("id_product", id_product);
-
+            com.ExecuteNonQuery();
         }
         private static int AddToOrder(string name)
         {
@@ -171,12 +171,40 @@ namespace ComputerShop
             }
         }
 
-        private void Test(object sender, RoutedEventArgs e)
+
+
+        private void Window_Unloaded(object sender, RoutedEventArgs e)
         {
-            string queryToorder_product = "INSERT INTO [order_product] (id_order, id_product) VALUES ('52', '2')";
+            DeleteFromOrder_Prodeuct();
+            DeleteFromOrder();
+        }
+
+        private void DeleteFromOrder_Prodeuct()
+        {
             SqlConnection sqlCon = new SqlConnection(Settings1.Default.connectionString);
+            string queryToorder_productDelete = "delete order_product";
             sqlCon.Open();
-            SqlCommand com = new SqlCommand(queryToorder_product, sqlCon);
+            SqlCommand com = new SqlCommand(queryToorder_productDelete, sqlCon);
+            com.ExecuteNonQuery();
+        }
+
+        private void DeleteFromOrder()
+        {
+            //LoginScreen id_user = new LoginScreen();        //удалять только свою корзину
+            //int id = id_user.user_id();
+            SqlConnection sqlCon = new SqlConnection(Settings1.Default.connectionString);
+            string queryToorderDelete = "delete [order] WHERE id_user = @current_id";
+            sqlCon.Open();
+            SqlCommand com = new SqlCommand(queryToorderDelete, sqlCon);
+            //com.Parameters.AddWithValue("@current_id", id);
+            com.ExecuteNonQuery();
+        }
+
+        private void GoToOrder(object sender, RoutedEventArgs e)
+        {
+            OrderWindow newOrderWindow = new OrderWindow();
+            newOrderWindow.Show();
+            
         }
     }
 }
