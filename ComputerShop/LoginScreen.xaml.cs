@@ -35,8 +35,8 @@ namespace ComputerShop
                     sqlCmd.Parameters.AddWithValue("@Password", hashPassword((Password.Password)));
 
                     int count = Convert.ToInt32(sqlCmd.ExecuteScalar());
+                    sqlCon.Close();
 
-                    
                     if (count > 0)
                     {
 
@@ -60,21 +60,6 @@ namespace ComputerShop
             }
         }
 
-        internal int user_id()
-        {
-            string Name = Username.Text;
-            SqlConnection sqlCon = new SqlConnection(Settings1.Default.connectionString);
-            string sql = "SELECT id FROM users WHERE Login = @un";
-            sqlCon.Open();
-
-            SqlParameter nameParam = new SqlParameter("@un", Name);
-
-            SqlCommand command = new SqlCommand(sql, sqlCon);
-            command.Parameters.Add(nameParam);
-
-            int count = Convert.ToInt32(command.ExecuteScalar());
-            return count;
-        }
 
         private void user_role()
         {
@@ -100,8 +85,19 @@ namespace ComputerShop
                     sqlCon.Close();
                     break;
                 case 3:
-                    User_window user_window = new User_window();
-                    user_window.Show();
+                    
+                    string name = Username.Text;
+                    int id = 0;
+               
+                    SqlConnection sqlConn = new SqlConnection(Settings1.Default.connectionString);
+                    sqlConn.Open();
+                    string sqlQuery = "SELECT id FROM users WHERE Login = @un";
+                    
+                    SqlCommand commandd = new SqlCommand(sqlQuery, sqlConn);
+                    commandd.Parameters.AddWithValue("un", name);
+                    id = Convert.ToInt32(commandd.ExecuteScalar());
+
+                    new User_window(name, id).ShowDialog();
                     sqlCon.Close();
                     break;
 

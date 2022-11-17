@@ -2,6 +2,7 @@
 using System;
 using System.Windows;
 using System.Data;
+using System.ComponentModel;
 
 namespace ComputerShop
 {
@@ -10,9 +11,12 @@ namespace ComputerShop
     /// </summary>
     public partial class User_window : Window
     {
-        public User_window()
+        public User_window(string Name, int id)
         {
             InitializeComponent();
+            this.Closing += MainWindow_Closing;
+            string name = Name;
+            Name_user.Text += name;
             SqlConnection sqlCon = new SqlConnection(Settings1.Default.connectionString);
             sqlCon.Open();
             String query = "SELECT name_category FROM category";
@@ -25,6 +29,12 @@ namespace ComputerShop
             Category.ItemsSource = dt.DefaultView;
             CreateOrder();
         }
+
+        private void MainWindow_Closing(object sender, CancelEventArgs e)
+        {
+            DeleteFromOrder();
+        }
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             SqlConnection sqlCon = new SqlConnection(Settings1.Default.connectionString);
@@ -102,11 +112,14 @@ namespace ComputerShop
            
             int g = AddToOrder(name);
     
-            string queryIdOrder = "SELECT * FROM [order]";
+            string queryIdOrder = "SELECT * FROM [order] WHERE id_user = @id_user";
+
            
             SqlConnection con = new SqlConnection(Settings1.Default.connectionString);
            con.Open();            
             SqlCommand com2 = new SqlCommand(queryIdOrder, con);
+            
+            com2.Parameters.AddWithValue("@id_user", GetId(Name_user.Text));
             int id = Convert.ToInt32(com2.ExecuteScalar());
             order_product(id, g);
         }
@@ -147,22 +160,43 @@ namespace ComputerShop
             return id;
         }
 
-        private static void CreateOrder()
+        private static int GetId(string name)
         {
-            LoginScreen id_user = new LoginScreen();
-            int id = id_user.user_id();
+            int id = 0;
+            SqlConnection sqlCon = new SqlConnection(Settings1.Default.connectionString);
+;
+            if (sqlCon.State == ConnectionState.Closed)
+                try
+                {
+                    string query = "SELECT id FROM users WHERE login = @login";
+                    SqlCommand MySqlCommand = new SqlCommand(query, sqlCon);
+                    sqlCon.Open();
+                    MySqlCommand.Parameters.AddWithValue("@login", name);
+                    id = Convert.ToInt32(MySqlCommand.ExecuteScalar());
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    return 0;
+                }
+            return id;
+        }
+        private  void CreateOrder()
+        {
+           
             int cost = 0;
             try
             {
+
                 SqlConnection sqlCon = new SqlConnection(Settings1.Default.connectionString);
                 sqlCon.Open();
                 string queryToCreateOrder = "INSERT INTO [order] (id_user, date, cost_order) VALUES (@id, @date, @cost)";
                 SqlCommand com = new SqlCommand(queryToCreateOrder, sqlCon);
-                com.Parameters.AddWithValue("@id", id);
+                com.Parameters.AddWithValue("@id", GetId(Name_user.Text));
                 com.Parameters.AddWithValue("@date", DateTime.Now);
                 com.Parameters.AddWithValue("@cost", cost);
-                
-                id = Convert.ToInt32(com.ExecuteScalar());
+                com.ExecuteNonQuery();
+
             }
             catch (Exception ex)
             {
@@ -175,34 +209,35 @@ namespace ComputerShop
 
         private void Window_Unloaded(object sender, RoutedEventArgs e)
         {
-            DeleteFromOrder_Prodeuct();
             DeleteFromOrder();
         }
 
-        private void DeleteFromOrder_Prodeuct()
-        {
-            SqlConnection sqlCon = new SqlConnection(Settings1.Default.connectionString);
-            string queryToorder_productDelete = "delete order_product";
-            sqlCon.Open();
-            SqlCommand com = new SqlCommand(queryToorder_productDelete, sqlCon);
-            com.ExecuteNonQuery();
-        }
+       
 
         private void DeleteFromOrder()
         {
-            //LoginScreen id_user = new LoginScreen();        //удалять только свою корзину
-            //int id = id_user.user_id();
+            String id = Name_user.Text;
             SqlConnection sqlCon = new SqlConnection(Settings1.Default.connectionString);
-            string queryToorderDelete = "delete [order] WHERE id_user = @current_id";
+            string queryToorderDelete = "delete  [order] from (select id from users where login = @id) as selected";
             sqlCon.Open();
             SqlCommand com = new SqlCommand(queryToorderDelete, sqlCon);
-            //com.Parameters.AddWithValue("@current_id", id);
+            com.Parameters.AddWithValue("@id", id);
             com.ExecuteNonQuery();
         }
 
         private void GoToOrder(object sender, RoutedEventArgs e)
         {
-            OrderWindow newOrderWindow = new OrderWindow();
+            string queryIdOrder = "SELECT id FROM  users WHERE id = @id_user";
+
+
+            SqlConnection con = new SqlConnection(Settings1.Default.connectionString);
+            con.Open();
+            SqlCommand com2 = new SqlCommand(queryIdOrder, con);
+
+            com2.Parameters.AddWithValue("@id_user", GetId(Name_user.Text));
+            int id = Convert.ToInt32(com2.ExecuteScalar());
+
+            OrderWindow newOrderWindow = new OrderWindow(id);
             newOrderWindow.Show();
             
         }

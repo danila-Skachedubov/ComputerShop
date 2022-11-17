@@ -17,9 +17,10 @@
                 <DataGridTextColumn Binding="{Binding manufacturer}" Width="*" Header="Manufacturer"/>
             </DataGrid.Columns>
         </DataGrid>
-        <ComboBox DisplayMemberPath="name_category" x:Name="Category" HorizontalAlignment="Left" Height="21" Margin="544,40,0,0" VerticalAlignment="Top" Width="196"/>
+        <ComboBox DisplayMemberPath="name_category" x:Name="Category" HorizontalAlignment="Left" Height="21" Margin="547,82,0,0" VerticalAlignment="Top" Width="196"/>
         <Button Content="Show" Click="btnShow_Click" HorizontalAlignment="Left" Margin="629,121,0,0" VerticalAlignment="Top"/>
         <Button Content="order" Click="btnOrder_Click" HorizontalAlignment="Left" Margin="574,298,0,0" VerticalAlignment="Top"/>
         <Button Content="Перейти к корзине" Click="GoToOrder" HorizontalAlignment="Left" Margin="152,270,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" IsReadOnly="True" Margin="590,24,0,0" TextWrapping="Wrap" x:Name="Name_user" VerticalAlignment="Top" Width="120"/>
     </Grid>
 </Window>
