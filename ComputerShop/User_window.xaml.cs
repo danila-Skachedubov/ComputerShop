@@ -1,4 +1,8 @@
-﻿using System.Data.SqlClient;
+﻿//  2006-2008 (c) Viva64.com Team
+//  2008-2020 (c) OOO "Program Verification Systems"
+//  2020-2022 (c) PVS-Studio LLC
+
+using System.Data.SqlClient;
 using System;
 using System.Windows;
 using System.Data;
@@ -187,6 +191,7 @@ namespace ComputerShop
             int cost = 0;
             try
             {
+                int е = 0;
 
                 SqlConnection sqlCon = new SqlConnection(Settings1.Default.connectionString);
                 sqlCon.Open();
@@ -236,7 +241,8 @@ namespace ComputerShop
 
             com2.Parameters.AddWithValue("@id_user", GetId(Name_user.Text));
             int id = Convert.ToInt32(com2.ExecuteScalar());
-
+            //User_window userWindow = new User_window();
+            //userWindow.Close();
             OrderWindow newOrderWindow = new OrderWindow(id);
             newOrderWindow.Show();
             

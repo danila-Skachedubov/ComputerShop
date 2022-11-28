@@ -18,5 +18,7 @@
             </DataGrid.Columns>
         </DataGrid>
         <Button Click="btnClick_Delete" Content="Delete" HorizontalAlignment="Left" Margin="46,261,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" x:Name="Summa" Margin="312,217,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Button Click="btnClic_Buy" Content="Заказать" HorizontalAlignment="Left" Margin="312,307,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>
