@@ -1,0 +1,19 @@
+﻿<Window x:Class="ComputerShop.ShowCharacteristic"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ComputerShop"
+        mc:Ignorable="d"
+        Title="ShowCharacteristic" Height="450" Width="800">
+    <Grid>
+        <DataGrid Margin="0,33,261,206" x:Name="Characteristic"  AutoGenerateColumns="False"  AlternatingRowBackground="#FFC4B0B0" SelectionMode="Single">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding name_characteristic}" Width="*" Header="Характеристика"/>
+                <DataGridTextColumn Binding="{Binding value}" Width="*" Header="Значение"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </Grid>
+</Window>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Office.Interop.Excel;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
@@ -24,7 +25,7 @@ namespace ComputerShop
     /// <summary>
     /// Логика взаимодействия для OrderWindow.xaml
     /// </summary>
-    public partial class OrderWindow : Window
+    public partial class OrderWindow 
     {
         private int id_user;
 
@@ -39,7 +40,7 @@ namespace ComputerShop
 
         private int Get_IdOrder(int idUser)
         {
-            string queryIdOrder = "SELECT id_order FROM [order] WHERE id_user = @id_user";
+            string queryIdOrder = "SELECT id_order FROM [order] WHERE id_user = @id_user and status = 'открыт'";
 
 
             SqlConnection con = new SqlConnection(Settings1.Default.connectionString);
@@ -54,7 +55,7 @@ namespace ComputerShop
         {
             SqlConnection sqlCon = new SqlConnection(Settings1.Default.connectionString);
             sqlCon.Open();
-            string queryToOrder_product = "select op.TempID, p.name_product, p.price, p.country, p.manufacturer from order_product as op\r\nleft join product as p\r\non p.id_product = op.id_product\r\nleft join [order] as o\r\non o.id_order = op.id_order\r\nwhere o.id_user = @id";
+            string queryToOrder_product = "select op.TempID, p.name_product, p.price, p.country, p.manufacturer, o.status from order_product as op\r\nleft join product as p\r\non p.id_product = op.id_product\r\nleft join [order] as o\r\non o.id_order = op.id_order\r\nwhere o.id_user = @id and o.status = 'открыт'";
             //select op.TempID, p.name_product, p.price, p.country, p.manufacturer from order_product as on left join product as on p.id_product = op.id_product\r\nleft join [order] as o\r\non o.id_order = op.id_order\r\nwhere o.id_user = @id
             SqlCommand createCommand = new SqlCommand(queryToOrder_product, sqlCon);
             createCommand.Parameters.AddWithValue("@id", Id_user);
@@ -84,6 +85,16 @@ namespace ComputerShop
             }
           
 
+        }
+
+        public void GetStatus(int idOrder)
+        {
+            SqlConnection sqlCon = new SqlConnection(Settings1.Default.connectionString);
+            sqlCon.Open();
+            string queryToOrder_product = "";
+            
+            SqlCommand createCommand = new SqlCommand(queryToOrder_product, sqlCon);
+            createCommand.Parameters.AddWithValue("@id", Id_user);
         }
 
         private void btnClick_Delete(object sender, RoutedEventArgs e)
@@ -130,7 +141,7 @@ namespace ComputerShop
         {
             SqlConnection sqlCon = new SqlConnection(Settings1.Default.connectionString);
             sqlCon.Open();
-            string queryToOrder_product = "select op.TempID, p.name_product, p.price, p.country, p.manufacturer from order_product as op\r\nleft join product as p\r\non p.id_product = op.id_product\r\nleft join [order] as o\r\non o.id_order = op.id_order\r\nwhere o.id_user = @id";
+            string queryToOrder_product = "select op.TempID, p.name_product, p.price, p.country, p.manufacturer, o.status from order_product as op\r\nleft join product as p\r\non p.id_product = op.id_product\r\nleft join [order] as o\r\non o.id_order = op.id_order\r\nwhere o.id_user = @id";
             SqlCommand createCommand = new SqlCommand(queryToOrder_product, sqlCon);
             createCommand.Parameters.AddWithValue("@id", Id_user);
             SqlDataAdapter dataAdp = new SqlDataAdapter(createCommand);
@@ -143,76 +154,115 @@ namespace ComputerShop
 
         private void btnClic_Buy(object sender, RoutedEventArgs e)
         {
-          
-            SQLToCSV("select op.TempID, p.name_product, p.price, p.country, p.manufacturer from order_product as op\r\nleft join product as p\r\non p.id_product = op.id_product\r\nleft join [order] as o\r\non o.id_order = op.id_order\r\nwhere o.id_user = @id", @"C:\Users\Uset\Documents\GitHub\ComputerShop\ComputerShop\ordersList\order_" + Get_IdOrder(Id_user).ToString() );
-            System.Data.DataTable dt = new System.Data.DataTable("product");
-            ProductGrid.ItemsSource = dt.DefaultView;
-            dt.Clear();
-            DeleteOrder();
-            this.Close();
 
+            SqlConnection sqlCon = new SqlConnection(Settings1.Default.connectionString);
+            sqlCon.Open();
+            string queryToOrder_product = "update [order] set status = 'closed' where id_order = @idOrder";
+            SqlCommand createCommand = new SqlCommand(queryToOrder_product, sqlCon);
+            createCommand.Parameters.AddWithValue("@idOrder", Get_IdOrder(Id_user));
+            createCommand.ExecuteNonQuery();
         }
 
-        private void DeleteOrder()
+        private void btnClick_Bought(object sender, RoutedEventArgs e)
+        {
+            Bought newBought = new Bought(Id_user);
+            newBought.Show();
+        }
+
+        public static string GetLogin(int Id)
         {
             SqlConnection sqlCon = new SqlConnection(Settings1.Default.connectionString);
-            if (sqlCon.State == ConnectionState.Closed)
-                try
-                {
-                    string query = "delete from [order] where id_order = @idOrder";
-                    SqlCommand MySqlCommand = new SqlCommand(query, sqlCon);
-
-                    sqlCon.Open();
-                    MySqlCommand.Parameters.AddWithValue("@idOrder", Get_IdOrder(Id_user));
-                    MySqlCommand.ExecuteNonQuery();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-        }
-
-      
-        private void SQLToCSV(string query, string Filename)
-        {
-            SqlConnection connection = new SqlConnection(Settings1.Default.connectionString);
-            connection.Open();
-            
-
-            SqlCommand cmd = new SqlCommand(query, connection);
-            cmd.Parameters.AddWithValue("@id", Id_user);
-            SqlDataReader dr = cmd.ExecuteReader();
-            string path = @"C:\Users\Uset\Documents\GitHub\ComputerShop\ComputerShop\ordersList";
-            using (System.IO.StreamWriter fs = new System.IO.StreamWriter(Filename))
+           
+            try
             {
+                    sqlCon.Open();
+                    String query = "SELECT login FROM users  WHERE id = @Id";
+                    SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+
+                    sqlCmd.Parameters.AddWithValue("@Id", Id);
+                    string login =sqlCmd.ExecuteScalar().ToString();
+                    return login;
+               
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return "0";              
+            }
+            finally
+            {
+                sqlCon.Close();
                 
-                for (int i = 0; i < dr.FieldCount; i++)
-                {
-                    string name = dr.GetName(i);
-                    if (name.Contains(","))
-                        name = "\"" + name + "\"";
-
-                    fs.Write(name + ",");
-                }
-                fs.WriteLine();
-
-
-                while (dr.Read())
-                {
-                    for (int i = 0; i < dr.FieldCount; i++)
-                    {
-                        string value = dr[i].ToString();
-                        if (value.Contains(","))
-                            value = "\"" + value + "\"";
-
-                        fs.Write(value + ",");
-                    }
-                    fs.WriteLine();
-                }
-
-                fs.Close();
             }
         }
 
+        private void btn_Back(object sender, RoutedEventArgs e)
+        {
+            
+            new User_window(GetLogin(Id_user), Id_user).Show();
+            this.Close();
         }
+
+        /* private void DeleteOrder()
+         {
+             SqlConnection sqlCon = new SqlConnection(Settings1.Default.connectionString);
+             if (sqlCon.State == ConnectionState.Closed)
+                 try
+                 {
+                     string query = "delete from [order] where id_order = @idOrder";
+                     SqlCommand MySqlCommand = new SqlCommand(query, sqlCon);
+
+                     sqlCon.Open();
+                     MySqlCommand.Parameters.AddWithValue("@idOrder", Get_IdOrder(Id_user));
+                     MySqlCommand.ExecuteNonQuery();
+                 }
+                 catch (Exception ex)
+                 {
+                     MessageBox.Show(ex.Message);
+                 }
+         }*/
+
+
+        /*  private void SQLToCSV(string query, string Filename)
+          {
+              SqlConnection connection = new SqlConnection(Settings1.Default.connectionString);
+              connection.Open();
+
+
+              SqlCommand cmd = new SqlCommand(query, connection);
+              cmd.Parameters.AddWithValue("@id", Id_user);
+              SqlDataReader dr = cmd.ExecuteReader();
+              string path = @"C:\Users\Uset\Documents\GitHub\ComputerShop\ComputerShop\ordersList";
+              using (System.IO.StreamWriter fs = new System.IO.StreamWriter(Filename))
+              {
+
+                  for (int i = 0; i < dr.FieldCount; i++)
+                  {
+                      string name = dr.GetName(i);
+                      if (name.Contains(","))
+                          name = "\"" + name + "\"";
+
+                      fs.Write(name + ",");
+                  }
+                  fs.WriteLine();
+
+
+                  while (dr.Read())
+                  {
+                      for (int i = 0; i < dr.FieldCount; i++)
+                      {
+                          string value = dr[i].ToString();
+                          if (value.Contains(","))
+                              value = "\"" + value + "\"";
+
+                          fs.Write(value + ",");
+                      }
+                      fs.WriteLine();
+                  }
+
+                  fs.Close();
+              }
+          }*/
+
+    }
 }

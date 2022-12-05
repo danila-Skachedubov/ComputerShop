@@ -43,7 +43,8 @@ namespace ComputerShop
                 {
                     UsersGrid.ItemsSource = null;
 
-                    String query = "SELECT * FROM users";
+                    String query = "select id, login, password, roles_user.value,name, surname, email from users join roles_user ON users.roles = roles_user.id_roles";
+                    //select id, login, password, name, surname, email from users join roles_user ON users.roles = roles_user.value
                     SqlCommand createCommand = new SqlCommand(query, sqlCon);
 
                     SqlDataAdapter dataAdp = new SqlDataAdapter(createCommand);
@@ -77,7 +78,7 @@ namespace ComputerShop
         {
             SqlConnection sqlCon = new SqlConnection(Settings1.Default.connectionString);
             sqlCon.Open();
-            String query = "SELECT * FROM users";
+            String query = "select id, login, password, roles_user.value,name, surname, email from users join roles_user ON users.roles = roles_user.id_roles";
             SqlCommand createCommand = new SqlCommand(query, sqlCon);
 
             SqlDataAdapter dataAdp = new SqlDataAdapter(createCommand);

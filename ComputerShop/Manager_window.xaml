@@ -1,0 +1,13 @@
+﻿<Window x:Class="ComputerShop.Manager_window"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ComputerShop"
+        mc:Ignorable="d"
+        Title="Manager_window" Height="450" Width="800">
+    <Grid>
+        <Button Content="Добавить товар" Click="btn_AddProd" HorizontalAlignment="Left" Margin="608,115,0,0" VerticalAlignment="Top"/>
+        <ComboBox DisplayMemberPath="name_category" x:Name="Category" HorizontalAlignment="Left" Height="21" Margin="547,82,0,0" VerticalAlignment="Top" Width="196" SelectionChanged="Category_SelectionChanged"/>
+    </Grid>
+</Window>

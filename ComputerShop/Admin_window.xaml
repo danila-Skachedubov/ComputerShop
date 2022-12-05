@@ -23,7 +23,7 @@
                 <DataGridTextColumn Binding="{Binding id}" Width="*" Header="Id"/>
                 <DataGridTextColumn Binding="{Binding login}" Width="*" Header="Login"/>
                 <DataGridTextColumn Binding="{Binding password}" Width="*" Header="Password"/>
-                <DataGridTextColumn Binding="{Binding roles}" Width="*" Header="Roles"/>
+                <DataGridTextColumn Binding="{Binding value}" Width="*" Header="Roles"/>
                 <DataGridTextColumn Binding="{Binding name}" Width="*" Header="Name"/>
                 <DataGridTextColumn Binding="{Binding surname}" Width="*" Header="Surname"/>
                 <DataGridTextColumn Binding="{Binding email}" Width="*" Header="Email"/>

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ComputerShop"
         mc:Ignorable="d"
         Loaded="Window_Loaded"
-        Unloaded="Window_Unloaded"
+        
         Title="User_window" Height="450" Width="800">
     <Grid>
         <DataGrid Grid.ColumnSpan="2" Margin="0,0,261,239" x:Name="ProductGrid"  AutoGenerateColumns="False"  AlternatingRowBackground="#FFC4B0B0" SelectionMode="Single">
@@ -17,10 +17,11 @@
                 <DataGridTextColumn Binding="{Binding manufacturer}" Width="*" Header="Manufacturer"/>
             </DataGrid.Columns>
         </DataGrid>
-        <ComboBox DisplayMemberPath="name_category" x:Name="Category" HorizontalAlignment="Left" Height="21" Margin="547,82,0,0" VerticalAlignment="Top" Width="196"/>
+        <ComboBox DisplayMemberPath="name_category" x:Name="Category" HorizontalAlignment="Left" Height="21" Margin="547,82,0,0" VerticalAlignment="Top" Width="196" SelectionChanged="Category_SelectionChanged"/>
         <Button Content="Show" Click="btnShow_Click" HorizontalAlignment="Left" Margin="629,121,0,0" VerticalAlignment="Top"/>
         <Button Content="order" Click="btnOrder_Click" HorizontalAlignment="Left" Margin="574,298,0,0" VerticalAlignment="Top"/>
         <Button Content="Перейти к корзине" Click="GoToOrder" HorizontalAlignment="Left" Margin="152,270,0,0" VerticalAlignment="Top"/>
         <TextBox HorizontalAlignment="Left" IsReadOnly="True" Margin="590,24,0,0" TextWrapping="Wrap" x:Name="Name_user" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Посмотреть характеристики" Click="btn_ShowCharack" HorizontalAlignment="Left" Margin="359,240,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

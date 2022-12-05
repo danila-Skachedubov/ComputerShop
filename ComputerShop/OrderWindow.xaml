@@ -11,14 +11,17 @@
         <DataGrid Grid.ColumnSpan="2" Margin="0,0,261,239" x:Name="ProductGrid"  AutoGenerateColumns="False"  AlternatingRowBackground="#FFC4B0B0" SelectionMode="Single">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding TempID}" Width="*" Header="Id product"/>
-                <DataGridTextColumn Binding="{Binding name_product}" Width="*" Header="Name product"/>
-                <DataGridTextColumn Binding="{Binding price}" Width="*" Header="Price"/>
-                <DataGridTextColumn Binding="{Binding country}" Width="*" Header="Country"/>
-                <DataGridTextColumn Binding="{Binding manufacturer}" Width="*" Header="Manufacturer"/>
+                <DataGridTextColumn Binding="{Binding name_product}" Width="*" Header="Наименование"/>
+                <DataGridTextColumn Binding="{Binding price}" Width="*" Header="Цена"/>
+                <DataGridTextColumn Binding="{Binding country}" Width="*" Header="Страна"/>
+                <DataGridTextColumn Binding="{Binding manufacturer}" Width="*" Header="Производитель"/>
+                <DataGridTextColumn Binding="{Binding status}" Width="*" Header="Статус заказа"/>
             </DataGrid.Columns>
         </DataGrid>
         <Button Click="btnClick_Delete" Content="Delete" HorizontalAlignment="Left" Margin="46,261,0,0" VerticalAlignment="Top"/>
         <TextBox HorizontalAlignment="Left" x:Name="Summa" Margin="312,217,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <Button Click="btnClic_Buy" Content="Заказать" HorizontalAlignment="Left" Margin="312,307,0,0" VerticalAlignment="Top"/>
+        <Button Click="btnClick_Bought" Content="Покупки" HorizontalAlignment="Left" Margin="539,281,0,0" VerticalAlignment="Top"/>
+        <Button Content="Вернуться к катологу" Click="btn_Back" HorizontalAlignment="Left" Margin="432,392,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

@@ -1,0 +1,21 @@
+﻿<Window x:Class="ComputerShop.Bought"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ComputerShop"
+        mc:Ignorable="d"
+        Title="Покупки" Height="450" Width="800">
+    <Grid>
+        <DataGrid Grid.ColumnSpan="2" Margin="0,0,261,239" x:Name="ProductGrid"  AutoGenerateColumns="False"  AlternatingRowBackground="#FFC4B0B0" SelectionMode="Single">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding TempID}" Width="*" Header="Id product"/>
+                    <DataGridTextColumn Binding="{Binding name_product}" Width="*" Header="Наименование"/>
+                    <DataGridTextColumn Binding="{Binding price}" Width="*" Header="Цена"/>
+                    <DataGridTextColumn Binding="{Binding country}" Width="*" Header="Страна"/>
+                    <DataGridTextColumn Binding="{Binding manufacturer}" Width="*" Header="Производитель"/>
+                    <DataGridTextColumn Binding="{Binding status}" Width="*" Header="Статус заказа"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+</Window>

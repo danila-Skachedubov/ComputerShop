@@ -8,13 +8,18 @@ using System.Windows;
 using System.Data;
 using System.ComponentModel;
 
+
 namespace ComputerShop
 {
     /// <summary>
     /// Логика взаимодействия для User_window.xaml
     /// </summary>
-    public partial class User_window : Window
+    public partial class User_window : Window 
     {
+        private int idOrder = 0;
+
+        public int IdOrder { get => idOrder; set => idOrder = value; }
+
         public User_window(string Name, int id)
         {
             InitializeComponent();
@@ -36,9 +41,9 @@ namespace ComputerShop
 
         private void MainWindow_Closing(object sender, CancelEventArgs e)
         {
-            DeleteFromOrder();
+            DeleteEmptyOrder();
         }
-
+        
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             SqlConnection sqlCon = new SqlConnection(Settings1.Default.connectionString);
@@ -110,22 +115,24 @@ namespace ComputerShop
 
         private void btnOrder_Click(object sender, RoutedEventArgs e)
         {
-            DataRowView drv = (DataRowView)ProductGrid.SelectedItem;
-            string name = (string)drv["name_product"];
-
-           
-            int g = AddToOrder(name);
-    
-            string queryIdOrder = "SELECT * FROM [order] WHERE id_user = @id_user";
-
-           
-            SqlConnection con = new SqlConnection(Settings1.Default.connectionString);
-           con.Open();            
-            SqlCommand com2 = new SqlCommand(queryIdOrder, con);
             
-            com2.Parameters.AddWithValue("@id_user", GetId(Name_user.Text));
-            int id = Convert.ToInt32(com2.ExecuteScalar());
-            order_product(id, g);
+            DataRowView drv = (DataRowView)ProductGrid.SelectedItem;
+            if (drv == null)
+            {
+                MessageBox.Show("Выберите товар");
+            }
+            else
+            {
+                string name = (string)drv["name_product"];
+                int g = AddToOrder(name);
+                string queryIdOrder = "SELECT * FROM [order] WHERE id_user = @id_user and status = 'открыт' ";
+                SqlConnection con = new SqlConnection(Settings1.Default.connectionString);
+                con.Open();
+                SqlCommand com2 = new SqlCommand(queryIdOrder, con);
+                com2.Parameters.AddWithValue("@id_user", GetId(Name_user.Text));
+                int id = Convert.ToInt32(com2.ExecuteScalar());
+                order_product(id, g);
+            }
         }
 
         private void order_product(int id_order, int id_product)
@@ -191,16 +198,16 @@ namespace ComputerShop
             int cost = 0;
             try
             {
-                int е = 0;
+                int idOrder = 0;
 
                 SqlConnection sqlCon = new SqlConnection(Settings1.Default.connectionString);
                 sqlCon.Open();
-                string queryToCreateOrder = "INSERT INTO [order] (id_user, date, cost_order) VALUES (@id, @date, @cost)";
+                string queryToCreateOrder = "INSERT INTO [order] (id_user, date, cost_order, status) VALUES (@id, @date, @cost, 'открыт'); SELECT SCOPE_IDENTITY() AS NewID";
                 SqlCommand com = new SqlCommand(queryToCreateOrder, sqlCon);
                 com.Parameters.AddWithValue("@id", GetId(Name_user.Text));
                 com.Parameters.AddWithValue("@date", DateTime.Now);
                 com.Parameters.AddWithValue("@cost", cost);
-                com.ExecuteNonQuery();
+                IdOrder = (int)(decimal)com.ExecuteScalar();
 
             }
             catch (Exception ex)
@@ -212,22 +219,33 @@ namespace ComputerShop
 
 
 
-        private void Window_Unloaded(object sender, RoutedEventArgs e)
+       /* private void Window_Unloaded(object sender, RoutedEventArgs e)
         {
-            DeleteFromOrder();
-        }
+            DeleteEmptyOrder();
+        }*/
 
        
 
-        private void DeleteFromOrder()
+        private void DeleteEmptyOrder()
         {
             String id = Name_user.Text;
             SqlConnection sqlCon = new SqlConnection(Settings1.Default.connectionString);
-            string queryToorderDelete = "delete  [order] from (select id from users where login = @id) as selected";
+            string queryToorderDelete = "select * from order_product where id_order = @lastId";
+            //string queryToorderDelete = "delete  [order] from (select id from users where login = @id) as selected";
             sqlCon.Open();
             SqlCommand com = new SqlCommand(queryToorderDelete, sqlCon);
-            com.Parameters.AddWithValue("@id", id);
-            com.ExecuteNonQuery();
+            com.Parameters.AddWithValue("@lastId", IdOrder);
+            int TempId = Convert.ToInt32(com.ExecuteScalar());
+            if (TempId ==0)
+            {
+                SqlConnection sqlCon2 = new SqlConnection(Settings1.Default.connectionString);
+                string queryToorderDeleteEmpty = "delete from [order] where id_order = @lastId";
+                //string queryToorderDelete = "delete  [order] from (select id from users where login = @id) as selected";
+                sqlCon2.Open();
+                SqlCommand comm = new SqlCommand(queryToorderDeleteEmpty, sqlCon);
+                comm.Parameters.AddWithValue("@lastId", IdOrder);
+                comm.ExecuteNonQuery();
+            }
         }
 
         private void GoToOrder(object sender, RoutedEventArgs e)
@@ -245,7 +263,30 @@ namespace ComputerShop
             //userWindow.Close();
             OrderWindow newOrderWindow = new OrderWindow(id);
             newOrderWindow.Show();
-            
+           // this.Close();
+        }
+
+        private void btn_ShowCharack(object sender, RoutedEventArgs e)
+        {
+            DataRowView drv = (DataRowView)ProductGrid.SelectedItem;
+            if (drv == null)
+            {
+                MessageBox.Show("Выберите товар");
+            }
+            else
+            {
+                string name = (string)drv["name_product"];
+                ShowCharacteristic newWindow = new ShowCharacteristic(name);
+                newWindow.Show();
+            }
+           // DataRowView drv = (DataRowView)ProductGrid.SelectedItem;
+       
+        }
+
+        private void Category_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+
         }
     }
+    
 }
