@@ -70,7 +70,7 @@ namespace ComputerShop
             int sum = 0;
             SqlConnection sqlConn = new SqlConnection(Settings1.Default.connectionString);
             sqlConn.Open();
-            string queryGetSum = "select SUM(price) from order_product as op left join product as p on p.id_product = op.id_product left join [order] as o on o.id_order = op.id_order where o.id_user = @id";
+            string queryGetSum = "select SUM(price) from order_product as op left join product as p on p.id_product = op.id_product left join [order] as o on o.id_order = op.id_order where o.id_user = @id and status = 'open'";
             //select op.TempID, p.name_product, p.price, p.country, p.manufacturer from order_product as on left join product as on p.id_product = op.id_product\r\nleft join [order] as o\r\non o.id_order = op.id_order\r\nwhere o.id_user = @id
             SqlCommand createCommandd = new SqlCommand(queryGetSum, sqlConn);
             createCommandd.Parameters.AddWithValue("@id", Id_user);
@@ -99,7 +99,7 @@ namespace ComputerShop
 
         private void btnClick_Delete(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("Вы действительно хотите удалить пользователя", "Уведомление", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            if (MessageBox.Show("Вы действительно хотите удалить товар?", "Уведомление", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
 
 
@@ -150,17 +150,34 @@ namespace ComputerShop
             //UsersGrid.ItemsSource = dt.DefaultView;
             ProductGrid.ItemsSource = dt.DefaultView;
             
+
+
         }
 
         private void btnClic_Buy(object sender, RoutedEventArgs e)
         {
-
+            int idOrDer = Get_IdOrder(Id_user);
             SqlConnection sqlCon = new SqlConnection(Settings1.Default.connectionString);
             sqlCon.Open();
             string queryToOrder_product = "update [order] set status = 'closed' where id_order = @idOrder";
             SqlCommand createCommand = new SqlCommand(queryToOrder_product, sqlCon);
             createCommand.Parameters.AddWithValue("@idOrder", Get_IdOrder(Id_user));
             createCommand.ExecuteNonQuery();
+
+            SqlConnection sqlConn = new SqlConnection(Settings1.Default.connectionString);
+
+            
+            string queryToOrder_productt = "select op.TempID, p.name_product, p.price, p.country, p.manufacturer, o.status from order_product as op\r\nleft join product as p\r\non p.id_product = op.id_product\r\nleft join [order] as o\r\non o.id_order = op.id_order\r\nwhere o.id_user = @id and o.status = 'открыт'";
+                //select op.TempID, p.name_product, p.price, p.country, p.manufacturer from order_product as on left join product as on p.id_product = op.id_product\r\nleft join [order] as o\r\non o.id_order = op.id_order\r\nwhere o.id_user = @id
+                SqlCommand createCommandd = new SqlCommand(queryToOrder_productt, sqlConn);
+                createCommandd.Parameters.AddWithValue("@id", Id_user);
+                SqlDataAdapter dataAdp = new SqlDataAdapter(createCommandd);
+                System.Data.DataTable dt = new System.Data.DataTable("product");
+                dataAdp.Fill(dt);
+                ProductGrid.ItemsSource = dt.DefaultView;
+            MessageBox.Show("Ваш заказ №" + idOrDer + " отправлен на сборку!");
+
+
         }
 
         private void btnClick_Bought(object sender, RoutedEventArgs e)

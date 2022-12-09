@@ -8,6 +8,6 @@
         Title="Manager_window" Height="450" Width="800">
     <Grid>
         <Button Content="Добавить товар" Click="btn_AddProd" HorizontalAlignment="Left" Margin="608,115,0,0" VerticalAlignment="Top"/>
-        <ComboBox DisplayMemberPath="name_category" x:Name="Category" HorizontalAlignment="Left" Height="21" Margin="547,82,0,0" VerticalAlignment="Top" Width="196" SelectionChanged="Category_SelectionChanged"/>
+        <ComboBox DisplayMemberPath="name_category" x:Name="Category" HorizontalAlignment="Left" Height="21" Margin="547,82,0,0" VerticalAlignment="Top" Width="196" />
     </Grid>
 </Window>
