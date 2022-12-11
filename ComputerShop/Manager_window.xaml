@@ -5,9 +5,35 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ComputerShop"
         mc:Ignorable="d"
+        
         Title="Manager_window" Height="450" Width="800">
     <Grid>
-        <Button Content="Добавить товар" Click="btn_AddProd" HorizontalAlignment="Left" Margin="608,115,0,0" VerticalAlignment="Top"/>
-        <ComboBox DisplayMemberPath="name_category" x:Name="Category" HorizontalAlignment="Left" Height="21" Margin="547,82,0,0" VerticalAlignment="Top" Width="196" />
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="571*"/>
+            <ColumnDefinition Width="229*"/>
+        </Grid.ColumnDefinitions>
+        <DataGrid Margin="0,0,32,239" x:Name="ProductGrid"  AutoGenerateColumns="False"  AlternatingRowBackground="#FFC4B0B0" SelectionMode="Single">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding name_product}" Width="*" Header="Name product"/>
+                <DataGridTextColumn Binding="{Binding price}" Width="*" Header="Price"/>
+                <DataGridTextColumn Binding="{Binding country}" Width="*" Header="Country"/>
+                <DataGridTextColumn Binding="{Binding manufacturer}" Width="*" Header="Manufacturer"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid  Margin="0,200,221,49" AutoGenerateColumns="False" x:Name="Order" SelectionMode="Single" Grid.ColumnSpan="2">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding id_user}" Width="*" Header="ID пользователя"/>
+                <DataGridTextColumn Binding="{Binding id_order}" Width="*" Header="Id заказа"/>
+                <DataGridTextColumn Binding="{Binding name_product}" Width="*" Header="Наименование товара"/>
+                <DataGridTextColumn Binding="{Binding status}" Width="*" Header="Статус"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Button Content="Добавить товар"  Click="btn_AddProd" HorizontalAlignment="Left" Margin="37,115,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <ComboBox DisplayMemberPath="name_category" x:Name="CategoryProd" HorizontalAlignment="Left" Height="21" Margin="547,82,0,0" VerticalAlignment="Top" Width="196" Grid.ColumnSpan="2" />
+        <Button Content="Удалить товар" Click="btnDel_Click" HorizontalAlignment="Left" Margin="37,48,0,0" VerticalAlignment="Top" Width="117" Grid.Column="1"/>
+        <ComboBox Grid.Column="1" x:Name="Status" HorizontalAlignment="Left" Margin="65,248,0,0" VerticalAlignment="Top" Width="120"/>
+        <Button Grid.Column="1" Click="btnChangeStatus_Click" Content="Изменить статус" HorizontalAlignment="Left" Margin="78,293,0,0" VerticalAlignment="Top"/>
+
     </Grid>
 </Window>

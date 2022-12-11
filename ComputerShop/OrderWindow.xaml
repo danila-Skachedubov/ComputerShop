@@ -8,7 +8,7 @@
         Loaded="Window_loaded"
         Title="OrderWindow" Height="450" Width="800">
     <Grid>
-        <DataGrid Grid.ColumnSpan="2" Margin="0,0,261,239" x:Name="ProductGrid"  AutoGenerateColumns="False"  AlternatingRowBackground="#FFC4B0B0" SelectionMode="Single">
+        <DataGrid Margin="10,10,251,229" x:Name="ProductGrid"  AutoGenerateColumns="False"  AlternatingRowBackground="#FFC4B0B0" SelectionMode="Single">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding TempID}" Width="*" Header="Id product"/>
                 <DataGridTextColumn Binding="{Binding name_product}" Width="*" Header="Наименование"/>

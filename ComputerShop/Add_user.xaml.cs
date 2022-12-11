@@ -66,6 +66,7 @@ namespace ComputerShop
                         break;
                     default:
                         MessageBox.Show("Выберите роль!");
+                       
                         break;
                 }
                 createCommand.Parameters.AddWithValue("login", Login_text.Text);

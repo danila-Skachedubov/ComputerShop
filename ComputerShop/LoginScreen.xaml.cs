@@ -84,6 +84,10 @@ namespace ComputerShop
                     admin_window.Show();
                     sqlCon.Close();
                     break;
+                case 2:
+                    Manager_window manager_window = new Manager_window();   
+                    manager_window.Show();
+                    break;
                 case 3:
                     
                     string name = Username.Text;

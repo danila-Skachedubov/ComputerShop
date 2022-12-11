@@ -70,7 +70,7 @@ namespace ComputerShop
             int sum = 0;
             SqlConnection sqlConn = new SqlConnection(Settings1.Default.connectionString);
             sqlConn.Open();
-            string queryGetSum = "select SUM(price) from order_product as op left join product as p on p.id_product = op.id_product left join [order] as o on o.id_order = op.id_order where o.id_user = @id and status = 'open'";
+            string queryGetSum = "select SUM(price) from order_product as op left join product as p on p.id_product = op.id_product left join [order] as o on o.id_order = op.id_order where o.id_user = @id and status = 'открыт'";
             //select op.TempID, p.name_product, p.price, p.country, p.manufacturer from order_product as on left join product as on p.id_product = op.id_product\r\nleft join [order] as o\r\non o.id_order = op.id_order\r\nwhere o.id_user = @id
             SqlCommand createCommandd = new SqlCommand(queryGetSum, sqlConn);
             createCommandd.Parameters.AddWithValue("@id", Id_user);
@@ -159,7 +159,7 @@ namespace ComputerShop
             int idOrDer = Get_IdOrder(Id_user);
             SqlConnection sqlCon = new SqlConnection(Settings1.Default.connectionString);
             sqlCon.Open();
-            string queryToOrder_product = "update [order] set status = 'closed' where id_order = @idOrder";
+            string queryToOrder_product = "update [order] set status = 'Отправлен на сборку' where id_order = @idOrder";
             SqlCommand createCommand = new SqlCommand(queryToOrder_product, sqlCon);
             createCommand.Parameters.AddWithValue("@idOrder", Get_IdOrder(Id_user));
             createCommand.ExecuteNonQuery();
