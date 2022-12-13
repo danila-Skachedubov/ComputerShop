@@ -47,42 +47,52 @@ namespace ComputerShop
                 case "Процессор":
                     CPU_window cPU_Window = new CPU_window();
                     cPU_Window.Show();
+                    ShowProduct();
                     break;                  
                 case "Видеокарта":
                     GPU_Window gPU_Window = new GPU_Window();
                     gPU_Window.Show();
+                    ShowProduct();
                     break;
                 case "Корпус":
                     BOX_window boxPU_Window = new BOX_window(); 
                     boxPU_Window.Show();
+                    ShowProduct();
                     break;
                 case "Оперативная память":
                     Operative_memory_window operative_Memory_Window = new Operative_memory_window();
                     operative_Memory_Window.Show();
+                    ShowProduct();
                     break;
                 case "Жесткий диск":
                     Hard_drive_window hard_Drive_Window = new Hard_drive_window();      
                     hard_Drive_Window.Show();
+                    ShowProduct();
                     break;
                 case "Клавиатура":
                     Keyboard_window keyboard_Window = new Keyboard_window();    
                     keyboard_Window.Show();
+                    ShowProduct();
                     break;
                 case "Мышь":
                     Mouse_window mouse_Window = new Mouse_window();
                     mouse_Window.Show();
+                    ShowProduct();
                     break;
                 case "Монитор":
                     Monitor_window monitor_Window = new Monitor_window();   
                     monitor_Window.Show();
+                    ShowProduct();
                     break;
                 case "Блок питания":
                     Power_Pack_window power_Pack_Window = new Power_Pack_window();
                     power_Pack_Window.Show();
+                    ShowProduct();
                     break;
                 case "Материнская плата":
                     Motherboard_window motherboard_Window = new Motherboard_window();
                     motherboard_Window.Show();
+                    ShowProduct();
                     break;
                 default:
                     MessageBox.Show("Выберите категорию товара!");
@@ -90,7 +100,7 @@ namespace ComputerShop
 
             }
         }
-        private void ShowProduct()
+        public void ShowProduct()
         {
             SqlConnection sqlCon = new SqlConnection(Settings1.Default.connectionString);
             sqlCon.Open();
@@ -212,5 +222,9 @@ namespace ComputerShop
             }
         }
 
+        private void WinLoad(object sender, RoutedEventArgs e)
+        {
+            ShowProduct();
+        }
     }
 }

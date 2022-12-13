@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ComputerShop"
         mc:Ignorable="d"
+        Loaded="WinLoad"
         
         Title="Manager_window" Height="450" Width="800">
     <Grid>

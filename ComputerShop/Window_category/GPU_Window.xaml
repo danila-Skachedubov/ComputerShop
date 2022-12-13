@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ComputerShop.Window_category"
         mc:Ignorable="d"
+        Unloaded="Window_Unloaded"
         Title="GPU_Window" Height="450" Width="800">
     <Grid>
         <TextBox HorizontalAlignment="Left" x:Name="Name" Margin="250,79,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>

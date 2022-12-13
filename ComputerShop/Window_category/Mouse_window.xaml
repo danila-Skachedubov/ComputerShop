@@ -5,8 +5,31 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ComputerShop.Window_category"
         mc:Ignorable="d"
+        Unloaded="Window_Unloaded"
         Title="Mouse_window" Height="450" Width="800">
     <Grid>
-        
+        <TextBox HorizontalAlignment="Left" x:Name="Name" Margin="250,79,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" x:Name="Price" Margin="250,129,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" x:Name="Country" Margin="250,180,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" x:Name="Manufactured" Margin="250,230,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" x:Name="Frequency" Margin="516,50,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" x:Name="Size" Margin="513,88,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" x:Name="TypeMemory" Margin="510,143,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" x:Name="TechnicalProcess" Margin="513,212,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" x:Name="TDP" Margin="516,271,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" x:Name="Massa" Margin="513,323,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <TextBlock HorizontalAlignment="Left" Margin="250,55,0,0" TextWrapping="Wrap" Text="Наименвание" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="250,108,0,0" TextWrapping="Wrap" Text="Цена" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="250,159,0,0" TextWrapping="Wrap" Text="Страна" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="250,214,0,0" TextWrapping="Wrap" Text="Производитель" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="513,29,0,0" TextWrapping="Wrap" Text="Общее количество кнопок" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="513,68,0,0" TextWrapping="Wrap" Text="Дополнительные кнопки" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="545,122,0,0" TextWrapping="Wrap" Text="Максимальное разрешение датчика" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="545,180,0,0" TextWrapping="Wrap" Text="Материал изготовления" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="573,250,0,0" TextWrapping="Wrap" Text="Цвет" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="576,302,0,0" TextWrapping="Wrap" Text="Масса" VerticalAlignment="Top"/>
+       
+        <Button Content="Добавить товар" Click="btnAdd_Click" HorizontalAlignment="Left" Margin="293,310,0,0" VerticalAlignment="Top"/>
+
     </Grid>
 </Window>

@@ -101,7 +101,7 @@ namespace ComputerShop
             }
             
             SqlParameter nameParam = new SqlParameter("@id", id_category);
-            string query_id = "SELECT name_product, price, country, manufacturer FROM product WHERE id_product = @id";
+            string query_id = "SELECT name_product, price, country, manufacturer FROM product WHERE id_category = @id";
             SqlConnection sqlCon = new SqlConnection(Settings1.Default.connectionString);
             sqlCon.Open();
             SqlCommand command = new SqlCommand(query_id, sqlCon);
