@@ -4,6 +4,7 @@
 
 using System;
 using System.Data.SqlClient;
+using System.IO;
 using System.Windows;
 
 namespace ComputerShop
@@ -30,7 +31,7 @@ namespace ComputerShop
            
         }
 
-        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        private async void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             User user = new User();
             user.Login = Login_text.Text;
@@ -75,9 +76,18 @@ namespace ComputerShop
                 createCommand.Parameters.AddWithValue("name", Name_text.Text);
                 createCommand.Parameters.AddWithValue("surname", Surname_text.Text);
                 createCommand.Parameters.AddWithValue("email", Email_text.Text);
+                createCommand.ExecuteNonQuery();
 
+                MessageBox.Show("Пользователь добавлен!");
+                string path = @"C:\Users\Uset\Documents\\GitHub\ComputerShop\ComputerShop\Logger.txt";
+                DateTime dateTime = new DateTime();
+                using (StreamWriter writer = new StreamWriter(path, true))
 
-                MessageBox.Show(createCommand.ExecuteNonQuery().ToString());
+                {
+                    await writer.WriteLineAsync("Пользователь " + user.Login + "был добавлен с ролью "+ CurrentRole + dateTime);
+
+                }
+                this.Close();
             }
             else
                 MessageBox.Show("Пользователь с таким логином или почтой уже существует");

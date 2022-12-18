@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -130,7 +131,7 @@ namespace ComputerShop
                 }
             }
         }
-        private void DeleteRow(string id)
+        private async void DeleteRow(string id)
         {
 
             SqlConnection sqlCon = new SqlConnection(Settings1.Default.connectionString);
@@ -145,6 +146,14 @@ namespace ComputerShop
                     MySqlCommand.Parameters.AddWithValue("@id", id);
 
                     MySqlCommand.ExecuteNonQuery();
+                    string path = @"C:\Users\Uset\Documents\\GitHub\ComputerShop\ComputerShop\Logger.txt";
+                    DateTime dateTime = new DateTime();
+                    using (StreamWriter writer = new StreamWriter(path, true))
+
+                    {
+                        await writer.WriteLineAsync("Продукт id " +id + "был удален " + dateTime);
+
+                    }
                     ShowProduct();
                 }
                 catch (Exception ex)
@@ -157,7 +166,7 @@ namespace ComputerShop
         {
             SqlConnection sqlCon = new SqlConnection(Settings1.Default.connectionString);
             sqlCon.Open();
-            String query = "select id_user, [order].id_order, product.name_product, status from [order] join order_product ON [order].id_order = order_product.id_order join product on order_product.id_product = product.id_product";
+            String query = "select id_user, [order].id_order, product.name_product, users.email ,status from [order] join order_product ON [order].id_order = order_product.id_order join product on order_product.id_product = product.id_product join users on [order].id_user = users.id";
             SqlCommand createCommand = new SqlCommand(query, sqlCon);
 
             SqlDataAdapter dataAdp = new SqlDataAdapter(createCommand);
@@ -190,7 +199,7 @@ namespace ComputerShop
             }
         }
 
-        private void ChangeStatus(int id)
+        private async void ChangeStatus(int id)
         {
             string status = Status.Text;
             if (status == "")
@@ -213,6 +222,14 @@ namespace ComputerShop
                         MySqlCommand.Parameters.AddWithValue("@status", status);
 
                         MySqlCommand.ExecuteNonQuery();
+                        string path = @"C:\Users\Uset\Documents\\GitHub\ComputerShop\ComputerShop\Logger.txt";
+                        DateTime dateTime = new DateTime();
+                        using (StreamWriter writer = new StreamWriter(path, true))
+
+                        {
+                            await writer.WriteLineAsync("Заказ № " + id + "изменил статус на " + status + dateTime);
+
+                        }
                         ShowOrder();
                     }
                     catch (Exception ex)

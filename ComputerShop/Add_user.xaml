@@ -5,21 +5,76 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ComputerShop"
         mc:Ignorable="d"
-        Title="Add_user" Height="450" Width="383">
-    <Grid>
+        ResizeMode="NoResize"
+        Title="Добавление пользователя" Height="501" Width="383">
+    <Grid Background="#41518f">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="16*"/>
+            <ColumnDefinition Width="50*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="315*"/>
+           
+        </Grid.ColumnDefinitions>
 
-        <TextBox x:Name="Login_text" HorizontalAlignment="Left" Margin="75,60,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="196" Height="29"/>
-        <TextBox x:Name="Password_text" HorizontalAlignment="Left" Margin="75,117,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="196" Height="27"/>
-        <TextBlock HorizontalAlignment="Left" Margin="75,39,0,0" Text="Login" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="75,96,0,0" Text="Password" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <ComboBox DisplayMemberPath="value" x:Name="lIST_ROLE" HorizontalAlignment="Left" Height="21" Margin="90,354,0,0" VerticalAlignment="Top" Width="196"/>
-        <Button Content="Add" Click="btnAdd_Click" HorizontalAlignment="Left"  Margin="323,360,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="Name_text" HorizontalAlignment="Left" Margin="75,0,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Center" Width="196" Height="29"/>
-        <TextBox x:Name="Surname_text" HorizontalAlignment="Left" Margin="75,264,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="196" Height="29"/>
-        <TextBox x:Name="Email_text" HorizontalAlignment="Left" Margin="75,319,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="196" Height="29"/>
-        <TextBlock HorizontalAlignment="Left" Margin="75,182,0,0" Text="Name" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="75,243,0,0" Text="Surname" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="75,298,0,0" Text="Email" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox x:Name="Login_text" HorizontalAlignment="Left"
+                 Margin="3,62,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="238" Height="29" Grid.Column="3"/>
+        <TextBox x:Name="Password_text" HorizontalAlignment="Left" Margin="3,117,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="238" Height="29" Grid.Column="3"/>
+        <ComboBox DisplayMemberPath="value"  x:Name="lIST_ROLE" HorizontalAlignment="Left" Height="26" Margin="3,364,0,0" VerticalAlignment="Top" Width="238" Grid.Column="3"/>
+        <Button Content="Добавить" Click="btnAdd_Click" HorizontalAlignment="Left"  Margin="3,409,0,0" VerticalAlignment="Top" Width="96" Height="30" BorderBrush="Black" Background="#FF5FAF9F" Grid.Column="3">
+            <Button.Effect>
+                <DropShadowEffect/>
+            </Button.Effect>
+        </Button>
+        <TextBox x:Name="Name_text" HorizontalAlignment="Left" Margin="3,177,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="238" Height="29" Grid.Column="3"/>
+        <TextBox x:Name="Surname_text" HorizontalAlignment="Left" Margin="3,241,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="238" Height="29" Grid.Column="3"/>
+        <TextBox x:Name="Email_text" HorizontalAlignment="Left" Margin="3,299,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="238" Height="29" Grid.Column="3"/>
+        <Image HorizontalAlignment="Left" Source="C:\Users\Uset\Documents\GitHub\ComputerShop\ComputerShop\Source\pass.png" Height="28" Margin="21,118,0,0" VerticalAlignment="Top" Width="32" Grid.Column="1" Grid.ColumnSpan="3"/>
+        <Image HorizontalAlignment="Center" Source="C:\Users\Uset\Documents\GitHub\ComputerShop\ComputerShop\Source\login.png" Height="28" Margin="0,64,0,0" VerticalAlignment="Top" Width="28" Grid.Column="1"/>
+        <Image Margin="21,173,0,248" Source="C:\Users\Uset\Documents\GitHub\ComputerShop\ComputerShop\Source\press-pass.png" Grid.Column="1" />
+        <Image Margin="21,232,0,188" Source="C:\Users\Uset\Documents\GitHub\ComputerShop\ComputerShop\Source\press-pass.png" Grid.Column="1" RenderTransformOrigin="0.5,0.5" >
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleX="0.734"/>
+                    <RotateTransform/>
+                    <TranslateTransform X="0.237"/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <Image Margin="21,299,4,131" Source="C:\Users\Uset\Documents\GitHub\ComputerShop\ComputerShop\Source\почта.png" Stretch="Fill" Grid.Column="1"/>
+        <Image Margin="22,364,8,72" Source="C:\Users\Uset\Documents\GitHub\ComputerShop\ComputerShop\Source\роль.png" Stretch="Fill" Grid.Column="1"/>
+        <Label Content="Логин" HorizontalAlignment="Left" Margin="3,34,0,0" VerticalAlignment="Top" Foreground="White" FontSize="14" Grid.Column="3" Height="29" Width="49" >
+            <Label.Effect>
+                <DropShadowEffect/>
+            </Label.Effect>
+        </Label>
+        <Label Content="Пароль" HorizontalAlignment="Left" Margin="3,91,0,0" VerticalAlignment="Top" Foreground="White" FontSize="14" Grid.Column="3" Height="29" Width="58">
+            <Label.Effect>
+                <DropShadowEffect/>
+            </Label.Effect>
+        </Label>
+        <Label Content="Имя" HorizontalAlignment="Left" Margin="3,148,0,0" VerticalAlignment="Top" Foreground="White" FontSize="14" Grid.Column="3" Height="29" Width="37">
+            <Label.Effect>
+                <DropShadowEffect/>
+            </Label.Effect>
+        </Label>
+        <Label Content="Фамилия" HorizontalAlignment="Left" Margin="3,212,0,0" VerticalAlignment="Top" Foreground="White" FontSize="14" Grid.Column="3" Height="29" Width="68">
+            <Label.Effect>
+                <DropShadowEffect/>
+            </Label.Effect>
+        </Label>
+        <Label Content="Почта" HorizontalAlignment="Left" Margin="3,270,0,0" VerticalAlignment="Top" Foreground="White" FontSize="14" Grid.Column="3" Height="29" Width="49">
+            <Label.Effect>
+                <DropShadowEffect/>
+            </Label.Effect>
+        </Label>
+        <Label Content="Роль" HorizontalAlignment="Left" Margin="3,328,0,0" VerticalAlignment="Top" Foreground="White" FontSize="14" Grid.Column="3" Height="29" Width="40">
+            <Label.Effect>
+                <DropShadowEffect/>
+            </Label.Effect>
+        </Label>
+
+
 
     </Grid>
 </Window>

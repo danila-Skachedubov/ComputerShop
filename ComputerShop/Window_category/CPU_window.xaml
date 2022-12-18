@@ -7,32 +7,33 @@
         mc:Ignorable="d"
         Unloaded="Window_Unloaded"
         Title="CPU_window" Height="450" Width="800">
-    <Grid>
-        <TextBox HorizontalAlignment="Left" x:Name="Name" Margin="250,79,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" x:Name="Price" Margin="250,129,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" x:Name="Country" Margin="250,180,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" x:Name="Manufactured" Margin="250,230,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" x:Name="Quantity" Margin="516,50,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" x:Name="Frequency" Margin="513,88,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" x:Name="QuantityPotokov" Margin="510,143,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" x:Name="Soket" Margin="513,212,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" x:Name="GPU" Margin="516,271,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" x:Name="TypeMemory" Margin="513,323,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" x:Name="TDP"  Margin="518,365,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" x:Name="Temp" Margin="533,409,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <TextBlock HorizontalAlignment="Left" Margin="250,55,0,0" TextWrapping="Wrap" Text="Наименвание" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="250,108,0,0" TextWrapping="Wrap" Text="Цена" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="250,159,0,0" TextWrapping="Wrap" Text="Страна" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="250,214,0,0" TextWrapping="Wrap" Text="Производитель" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="513,29,0,0" TextWrapping="Wrap" Text="Количество ядер" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="513,68,0,0" TextWrapping="Wrap" Text="Частота процессора" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="545,122,0,0" TextWrapping="Wrap" Text="Количетсов потоков" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="545,180,0,0" TextWrapping="Wrap" Text="Сокет" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="573,250,0,0" TextWrapping="Wrap" Text="Графическое ядро" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="576,302,0,0" TextWrapping="Wrap" Text="Тип памяти" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="573,344,0,0" TextWrapping="Wrap" Text="TDP" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="576,388,0,0" TextWrapping="Wrap" Text="Максимальная рабочая температура" VerticalAlignment="Top"/>
-        <Button Content="Добавить товар" Click="btnAdd_Click" HorizontalAlignment="Left" Margin="293,310,0,0" VerticalAlignment="Top"/>
+    <Grid Background="#FF415AAB">
+        <TextBox HorizontalAlignment="Left" x:Name="Name" Margin="164,59,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="134" Height="30"/>
+        <TextBox HorizontalAlignment="Left" x:Name="Price" Margin="164,122,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="134" Height="30"/>
+        <TextBox HorizontalAlignment="Left" x:Name="Country" Margin="164,184,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="134" Height="30"/>
+        <TextBox HorizontalAlignment="Left" x:Name="Manufactured" Margin="164,243,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="134" Height="30"/>
+        <TextBox HorizontalAlignment="Left" x:Name="Quantity" Margin="355,60,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="134" Height="30"/>
+        <TextBox HorizontalAlignment="Left" x:Name="Frequency" Margin="355,122,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="134" Height="30"/>
+        <TextBox HorizontalAlignment="Left" x:Name="QuantityPotokov" Margin="355,188,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="134" Height="30"/>
+        <TextBox HorizontalAlignment="Left" x:Name="Soket" Margin="355,243,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="134" Height="30"/>
+        <TextBox HorizontalAlignment="Left" x:Name="GPU" Margin="533,60,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="134" Height="30"/>
+        <TextBox HorizontalAlignment="Left" x:Name="TypeMemory" Margin="537,122,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="134" Height="30"/>
+        <TextBox HorizontalAlignment="Left" x:Name="TDP"  Margin="537,188,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="134" Height="30"/>
+        <TextBox HorizontalAlignment="Left" x:Name="Temp" Margin="537,243,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="134" Height="30"/>
+        <TextBlock HorizontalAlignment="Left" Margin="164,35,0,0" TextWrapping="Wrap" Text="Наименвание" VerticalAlignment="Top" Foreground="White" FontSize="14"/>
+        <TextBlock HorizontalAlignment="Left" Margin="164,97,0,0" TextWrapping="Wrap" Text="Цена" VerticalAlignment="Top" FontSize="14" Foreground="White"/>
+        <TextBlock HorizontalAlignment="Left" Margin="164,163,0,0" TextWrapping="Wrap" Text="Страна" VerticalAlignment="Top" Foreground="White" FontSize="14"/>
+        <TextBlock HorizontalAlignment="Left" Margin="164,224,0,0" TextWrapping="Wrap" Text="Производитель" VerticalAlignment="Top" FontSize="14" Foreground="White"/>
+        <TextBlock HorizontalAlignment="Left" Margin="355,35,0,0" TextWrapping="Wrap" Text="Количество ядер" VerticalAlignment="Top" Foreground="White" FontSize="14"/>
+        <TextBlock HorizontalAlignment="Left" Margin="355,101,0,0" TextWrapping="Wrap" Text="Частота процессора" VerticalAlignment="Top" FontSize="14" Foreground="White"/>
+        <TextBlock HorizontalAlignment="Left" Margin="355,166,0,0" TextWrapping="Wrap" Text="Количетсов потоков" VerticalAlignment="Top" Foreground="White" FontSize="14"/>
+        <TextBlock HorizontalAlignment="Left" Margin="355,224,0,0" TextWrapping="Wrap" Text="Сокет" VerticalAlignment="Top" FontSize="14" Foreground="White"/>
+        <TextBlock HorizontalAlignment="Left" Margin="537,35,0,0" TextWrapping="Wrap" Text="Графическое ядро" VerticalAlignment="Top" Foreground="White" FontSize="14"/>
+        <TextBlock HorizontalAlignment="Left" Margin="537,101,0,0" TextWrapping="Wrap" Text="Тип памяти" VerticalAlignment="Top" FontSize="14" Foreground="White"/>
+        <TextBlock HorizontalAlignment="Left" Margin="537,169,0,0" TextWrapping="Wrap" Text="TDP" VerticalAlignment="Top" Foreground="White"/>
+        <TextBlock HorizontalAlignment="Left" Margin="533,223,0,0" TextWrapping="Wrap" Text="Максимальная рабочая температура" VerticalAlignment="Top" Foreground="White" FontSize="14"/>
+        <Button Content="Добавить товар" Click="btnAdd_Click" HorizontalAlignment="Left" Margin="366,295,0,0" VerticalAlignment="Top" Height="38" Width="112"/>
+        <Image Source="C:\Users\Uset\Documents\GitHub\ComputerShop\ComputerShop\Source\процессор.png" HorizontalAlignment="Left" Height="100" Margin="10,25,0,0" VerticalAlignment="Top" Width="100"/>
 
     </Grid>
 </Window>

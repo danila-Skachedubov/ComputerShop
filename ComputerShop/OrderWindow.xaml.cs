@@ -35,7 +35,9 @@ namespace ComputerShop
         {
             InitializeComponent();
             Id_user = id;
+
             
+
         }
 
         private int Get_IdOrder(int idUser)
@@ -77,7 +79,7 @@ namespace ComputerShop
             try
             {
                 sum = Convert.ToInt32(createCommandd.ExecuteScalar());
-                Summa.Text = sum.ToString();
+               summa.Content += sum.ToString();
             }
             catch (Exception ex)
             {
@@ -154,7 +156,7 @@ namespace ComputerShop
 
         }
 
-        private void btnClic_Buy(object sender, RoutedEventArgs e)
+        private async void btnClic_Buy(object sender, RoutedEventArgs e)
         {
             int idOrDer = Get_IdOrder(Id_user);
             SqlConnection sqlCon = new SqlConnection(Settings1.Default.connectionString);
@@ -176,7 +178,30 @@ namespace ComputerShop
                 dataAdp.Fill(dt);
                 ProductGrid.ItemsSource = dt.DefaultView;
             MessageBox.Show("Ваш заказ №" + idOrDer + " отправлен на сборку!");
+            string path = @"C:\Users\Uset\Documents\\GitHub\ComputerShop\ComputerShop\Logger.txt";
+            DateTime dateTime = new DateTime();
+            using (StreamWriter writer = new StreamWriter(path, true))
 
+            {
+                await writer.WriteLineAsync("Пользователь " + Id_user + "отправил на сборку заказ № " + idOrDer + dateTime);
+
+            }
+            int sum = 0;
+            SqlConnection sqlConnn = new SqlConnection(Settings1.Default.connectionString);
+            sqlConn.Open();
+            string queryGetSum = "select SUM(price) from order_product as op left join product as p on p.id_product = op.id_product left join [order] as o on o.id_order = op.id_order where o.id_user = @id and status = 'открыт'";
+            //select op.TempID, p.name_product, p.price, p.country, p.manufacturer from order_product as on left join product as on p.id_product = op.id_product\r\nleft join [order] as o\r\non o.id_order = op.id_order\r\nwhere o.id_user = @id
+            SqlCommand createCommanddd = new SqlCommand(queryGetSum, sqlConnn);
+            createCommanddd.Parameters.AddWithValue("@id", Id_user);
+            try
+            {
+                sum = Convert.ToInt32(createCommandd.ExecuteScalar());
+                summa.Content ="";
+            }
+            catch (Exception ex)
+            {
+               
+            }
 
         }
 

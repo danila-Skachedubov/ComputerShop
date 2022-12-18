@@ -7,32 +7,33 @@
         mc:Ignorable="d"
         Unloaded="Window_Unloaded"
         Title="Monitor_window" Height="450" Width="800">
-    <Grid>
-        <TextBox HorizontalAlignment="Left" x:Name="Name" Margin="250,79,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" x:Name="Price" Margin="250,129,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" x:Name="Country" Margin="250,180,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" x:Name="Manufactured" Margin="250,230,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" x:Name="Frequency" Margin="516,50,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" x:Name="Size" Margin="513,88,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" x:Name="TypeMemory" Margin="510,143,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" x:Name="TechnicalProcess" Margin="513,212,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" x:Name="TDP" Margin="516,271,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" x:Name="Massa" Margin="513,323,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" x:Name="Dlina"  Margin="518,365,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" x:Name="Shirina" Margin="533,409,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <TextBlock HorizontalAlignment="Left" Margin="250,55,0,0" TextWrapping="Wrap" Text="Наименвание" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="250,108,0,0" TextWrapping="Wrap" Text="Цена" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="250,159,0,0" TextWrapping="Wrap" Text="Страна" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="250,214,0,0" TextWrapping="Wrap" Text="Производитель" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="513,29,0,0" TextWrapping="Wrap" Text="Изогнутый экран" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="513,68,0,0" TextWrapping="Wrap" Text="Диагональ экрана(дюйм)" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="545,122,0,0" TextWrapping="Wrap" Text="Максимальное разрешение" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="545,180,0,0" TextWrapping="Wrap" Text="Тех изготовления матрицы" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="573,250,0,0" TextWrapping="Wrap" Text="Соотношение сторон" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="576,302,0,0" TextWrapping="Wrap" Text="Максимальнвя частота обновления экрана" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="573,344,0,0" TextWrapping="Wrap" Text="Веб-камера" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="576,388,0,0" TextWrapping="Wrap" Text="Цвет" VerticalAlignment="Top"/>
-        <Button Content="Добавить товар" Click="btnAdd_Click" HorizontalAlignment="Left" Margin="293,310,0,0" VerticalAlignment="Top"/>
+    <Grid Background="#FF415AAB">
+        <TextBox HorizontalAlignment="Left" x:Name="Name" Margin="146,64,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="134" Height="30"/>
+        <TextBox HorizontalAlignment="Left" x:Name="Price" Margin="146,124,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="134" Height="29"/>
+        <TextBox HorizontalAlignment="Left" x:Name="Country" Margin="146,193,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="134" Height="29"/>
+        <TextBox HorizontalAlignment="Left" x:Name="Manufactured" Margin="146,256,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="134" Height="30"/>
+        <TextBox HorizontalAlignment="Left" x:Name="Frequency" Margin="381,65,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="134" Height="29"/>
+        <TextBox HorizontalAlignment="Left" x:Name="Size" Margin="381,124,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="134" Height="29"/>
+        <TextBox HorizontalAlignment="Left" x:Name="TypeMemory" Margin="381,193,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="134" Height="29"/>
+        <TextBox HorizontalAlignment="Left" x:Name="TechnicalProcess" Margin="377,257,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="134" Height="29"/>
+        <TextBox HorizontalAlignment="Left" x:Name="TDP" Margin="632,65,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="134" Height="29"/>
+        <TextBox HorizontalAlignment="Left" x:Name="Massa" Margin="632,124,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="134" Height="29"/>
+        <TextBox HorizontalAlignment="Left" x:Name="Dlina"  Margin="632,193,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="134" Height="29"/>
+        <TextBox HorizontalAlignment="Left" x:Name="Shirina" Margin="632,258,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="134" Height="29"/>
+        <TextBlock HorizontalAlignment="Left" Margin="146,45,0,0" TextWrapping="Wrap" Text="Наименвание" VerticalAlignment="Top" Foreground="White" FontSize="14"/>
+        <TextBlock HorizontalAlignment="Left" Margin="146,105,0,0" TextWrapping="Wrap" Text="Цена" VerticalAlignment="Top" Foreground="White" FontSize="14"/>
+        <TextBlock HorizontalAlignment="Left" Margin="146,174,0,0" TextWrapping="Wrap" Text="Страна" VerticalAlignment="Top" Foreground="White" FontSize="14"/>
+        <TextBlock HorizontalAlignment="Left" Margin="146,237,0,0" TextWrapping="Wrap" Text="Производитель" VerticalAlignment="Top" Foreground="White" FontSize="14"/>
+        <TextBlock HorizontalAlignment="Left" Margin="389,45,0,0" TextWrapping="Wrap" Text="Изогнутый экран" VerticalAlignment="Top" Foreground="White" FontSize="14"/>
+        <TextBlock HorizontalAlignment="Left" Margin="379,105,0,0" TextWrapping="Wrap" Text="Диагональ экрана(дюйм)" VerticalAlignment="Top" Foreground="White" FontSize="14"/>
+        <TextBlock HorizontalAlignment="Left" Margin="381,174,0,0" TextWrapping="Wrap" Text="Максимальное разрешение" VerticalAlignment="Top" Foreground="White" FontSize="14"/>
+        <TextBlock HorizontalAlignment="Left" Margin="381,238,0,0" TextWrapping="Wrap" Text="Тех изготовления матрицы" VerticalAlignment="Top" Foreground="White" FontSize="14"/>
+        <TextBlock HorizontalAlignment="Left" Margin="628,45,0,0" TextWrapping="Wrap" Text="Соотношение сторон" VerticalAlignment="Top" Foreground="White" FontSize="14"/>
+        <TextBlock HorizontalAlignment="Left" Margin="632,90,0,0" TextWrapping="Wrap" Text="Максимальнвя частота обновления экрана" VerticalAlignment="Top" Foreground="White" FontSize="14"/>
+        <TextBlock HorizontalAlignment="Left" Margin="632,174,0,0" TextWrapping="Wrap" Text="Веб-камера" VerticalAlignment="Top" Foreground="White" FontSize="14"/>
+        <TextBlock HorizontalAlignment="Left" Margin="632,234,0,0" TextWrapping="Wrap" Text="Цвет" VerticalAlignment="Top" Foreground="White" FontSize="14"/>
+        <Button Content="Добавить товар" Click="btnAdd_Click" HorizontalAlignment="Left" Margin="381,311,0,0" VerticalAlignment="Top" Height="34" Width="126" />
+        <Image Source="C:\Users\Uset\Documents\GitHub\ComputerShop\ComputerShop\Source\монитор.png" HorizontalAlignment="Left" Height="100" Margin="10,45,0,0" VerticalAlignment="Top" Width="100"/>
 
     </Grid>
 </Window>

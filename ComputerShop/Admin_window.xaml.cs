@@ -5,8 +5,9 @@
 using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Windows;
-
+using System.Windows.Input;
 
 namespace ComputerShop
 {
@@ -95,7 +96,7 @@ namespace ComputerShop
             LoginScreen.Show();
 
         }
-        private void DeleteRow(int id)
+        private async void DeleteRow(int id)
         {
 
             SqlConnection sqlCon = new SqlConnection(Settings1.Default.connectionString);
@@ -113,6 +114,14 @@ namespace ComputerShop
                     MySqlCommand.Parameters.AddWithValue("@id", id);
                     //выполняем sql запрос
                     MySqlCommand.ExecuteNonQuery();
+                    string path = @"C:\Users\Uset\Documents\\GitHub\ComputerShop\ComputerShop\Logger.txt";
+                    DateTime dateTime = new DateTime();
+                    using (StreamWriter writer = new StreamWriter(path, true))
+
+                    {
+                        await writer.WriteLineAsync("Пользователь id:" + id + "был удален " + dateTime);
+
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -125,12 +134,30 @@ namespace ComputerShop
         {
             if (MessageBox.Show("Вы действительно хотите удалить пользователя", "Уведомление", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
-
+                int id2 = 0;
 
                 DataRowView drv = (DataRowView)UsersGrid.SelectedItem;
-                int id2 = (int)drv["id"];
+                if (drv == null)
+                {
+                    MessageBox.Show("Выберите пользователя");
 
-                DeleteRow(id2);
+                }
+                else 
+                {
+                    id2 = (int)drv["id"];
+                    DeleteRow(id2);
+                }
+                
+                
+                
+            }
+        }
+
+        private void Border_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                this.DragMove();
             }
         }
     }

@@ -7,32 +7,33 @@
         mc:Ignorable="d"
         Unloaded="Window_Unloaded"
         Title="BOX_window" Height="450" Width="800">
-    <Grid>
-        <TextBox HorizontalAlignment="Left" x:Name="Name" Margin="250,79,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" x:Name="Price" Margin="250,129,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" x:Name="Country" Margin="250,180,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" x:Name="Manufactured" Margin="250,230,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" x:Name="TypeSize" Margin="516,50,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" x:Name="MatPlat" Margin="513,88,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" x:Name="Material" Margin="510,143,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" x:Name="TypeSvet" Margin="513,212,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" x:Name="FormPlat" Margin="516,271,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" x:Name="FormBP" Margin="513,323,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" x:Name="Ventil"  Margin="518,365,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" x:Name="Color" Margin="533,409,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <TextBlock HorizontalAlignment="Left" Margin="250,55,0,0" TextWrapping="Wrap" Text="Наименвание" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="250,108,0,0" TextWrapping="Wrap" Text="Цена" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="250,159,0,0" TextWrapping="Wrap" Text="Страна" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="250,214,0,0" TextWrapping="Wrap" Text="Производитель" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="513,29,0,0" TextWrapping="Wrap" Text="Типоразмер корпуса" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="513,68,0,0" TextWrapping="Wrap" Text="Ориентация материнской платы" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="545,122,0,0" TextWrapping="Wrap" Text="Материал корпуса" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="545,180,0,0" TextWrapping="Wrap" Text="Тип подстветки" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="573,250,0,0" TextWrapping="Wrap" Text="Форм фактор совм. плат" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="576,302,0,0" TextWrapping="Wrap" Text="Форм фактор совместимых БП" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="573,344,0,0" TextWrapping="Wrap" Text="Вентиляторы в комплекте" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="576,388,0,0" TextWrapping="Wrap" Text="Цвет" VerticalAlignment="Top"/>
-        <Button Content="Добавить товар" Click="btnAdd_Click" HorizontalAlignment="Left" Margin="293,310,0,0" VerticalAlignment="Top"/>
+    <Grid Background="#FF415AAB">
+        <TextBox HorizontalAlignment="Left" x:Name="Name" Margin="146,65,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="134" Height="30"/>
+        <TextBox HorizontalAlignment="Left" x:Name="Price" Margin="146,129,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="134" Height="30"/>
+        <TextBox HorizontalAlignment="Left" x:Name="Country" Margin="146,192,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="134" Height="30"/>
+        <TextBox HorizontalAlignment="Left" x:Name="Manufactured" Margin="146,256,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="134" Height="30"/>
+        <TextBox HorizontalAlignment="Left" x:Name="TypeSize" Margin="381,65,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="134" Height="30"/>
+        <TextBox HorizontalAlignment="Left" x:Name="MatPlat" Margin="382,129,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="134" Height="30"/>
+        <TextBox HorizontalAlignment="Left" x:Name="Material" Margin="382,192,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="134" Height="30"/>
+        <TextBox HorizontalAlignment="Left" x:Name="TypeSvet" Margin="382,256,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="134" Height="30"/>
+        <TextBox HorizontalAlignment="Left" x:Name="FormPlat" Margin="601,65,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="134" Height="30"/>
+        <TextBox HorizontalAlignment="Left" x:Name="FormBP" Margin="601,129,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="134" Height="30"/>
+        <TextBox HorizontalAlignment="Left" x:Name="Ventil"  Margin="600,192,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="134" Height="30"/>
+        <TextBox HorizontalAlignment="Left" x:Name="Color" Margin="601,256,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="134" Height="30"/>
+        <TextBlock HorizontalAlignment="Left" Margin="146,38,0,0" TextWrapping="Wrap" Text="Наименвание" VerticalAlignment="Top" Foreground="White" FontSize="14"/>
+        <TextBlock HorizontalAlignment="Left" Margin="146,108,0,0" TextWrapping="Wrap" Text="Цена" VerticalAlignment="Top" FontSize="14" Foreground="White"/>
+        <TextBlock HorizontalAlignment="Left" Margin="146,172,0,0" TextWrapping="Wrap" Text="Страна" VerticalAlignment="Top" Foreground="White" FontSize="14"/>
+        <TextBlock HorizontalAlignment="Left" Margin="146,235,0,0" TextWrapping="Wrap" Text="Производитель" VerticalAlignment="Top" FontSize="14" Foreground="White"/>
+        <TextBlock HorizontalAlignment="Left" Margin="381,39,0,0" TextWrapping="Wrap" Text="Типоразмер корпуса" VerticalAlignment="Top" Foreground="White" FontSize="14"/>
+        <TextBlock HorizontalAlignment="Left" Margin="381,108,0,0" TextWrapping="Wrap" Text="Ориентация материнской платы" VerticalAlignment="Top" Foreground="White" FontSize="14"/>
+        <TextBlock HorizontalAlignment="Left" Margin="382,171,0,0" TextWrapping="Wrap" Text="Материал корпуса" VerticalAlignment="Top" FontSize="14" Foreground="White"/>
+        <TextBlock HorizontalAlignment="Left" Margin="382,235,0,0" TextWrapping="Wrap" Text="Тип подстветки" VerticalAlignment="Top" Foreground="White" FontSize="14"/>
+        <TextBlock HorizontalAlignment="Left" Margin="600,40,0,0" TextWrapping="Wrap" Text="Форм фактор совм. плат" VerticalAlignment="Top" Foreground="White" FontSize="14"/>
+        <TextBlock HorizontalAlignment="Left" Margin="601,108,0,0" TextWrapping="Wrap" Text="Форм фактор совместимых БП" VerticalAlignment="Top" FontSize="14" Foreground="#FFFBF8F8"/>
+        <TextBlock HorizontalAlignment="Left" Margin="601,175,0,0" TextWrapping="Wrap" Text="Вентиляторы в комплекте" VerticalAlignment="Top" Foreground="White" FontSize="14"/>
+        <TextBlock HorizontalAlignment="Left" Margin="601,235,0,0" TextWrapping="Wrap" Text="Цвет" VerticalAlignment="Top" Foreground="White" FontSize="14"/>
+        <Button Content="Добавить товар" Click="btnAdd_Click" HorizontalAlignment="Left" Margin="393,325,0,0" VerticalAlignment="Top" Height="31" Width="103"/>
+        <Image Source="C:\Users\Uset\Documents\GitHub\ComputerShop\ComputerShop\Source\блокПитания.png" HorizontalAlignment="Left" Height="100" Margin="10,10,0,0" VerticalAlignment="Top" Width="100"/>
 
     </Grid>
 </Window>

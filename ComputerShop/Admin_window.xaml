@@ -3,25 +3,82 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:local="clr-namespace:ComputerShop"
         mc:Ignorable="d"
         Loaded="Window_Loaded"
-        Title="User_window" Height="450" Width="800">
+        ResizeMode="NoResize"
+        Title="Панель администратора" Height="475" Width="801">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="5*"/>
-            <ColumnDefinition Width="27*"/>
+            <ColumnDefinition Width="15*"/>
+            <ColumnDefinition Width="112*"/>
+            <ColumnDefinition Width="420*"/>
+            <ColumnDefinition Width="108*"/>
+            <ColumnDefinition Width="84*"/>
+            <ColumnDefinition Width="76*"/>
         </Grid.ColumnDefinitions>
 
-        <Button Content="обновить" Name="btnShow" Click="btnShow_Click" HorizontalAlignment="Left" Margin="445,10,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-        <Button Content="clear users" x:Name="btnShow_Copy" Click="btnClear_Click" HorizontalAlignment="Left" Margin="445,72,0,0" VerticalAlignment="Top" Grid.Column="1" />
-        <Button Content="add users" x:Name="btnShow_Copy1" Click="btnAdd_Click" HorizontalAlignment="Left" Margin="446,115,0,0" VerticalAlignment="Top" Grid.Column="1"  />
-        <Button Content="Назад" Click="btnBack_Click" HorizontalAlignment="Left" Margin="514,282,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-        <DataGrid   ColumnHeaderStyle="{DynamicResource ScrollBarStyle1}" Grid.ColumnSpan="2" Margin="0,0,261,239" x:Name="UsersGrid"  AutoGenerateColumns="False"  AlternatingRowBackground="#FFC4B0B0" SelectionMode="Single">
+        <Border Grid.ColumnSpan="2">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                    <GradientStop Color="#223266" Offset="0"/>
+                    <GradientStop Color="#27396b" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Border CornerRadius="10" Margin="10,39,10,344">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="1,0" EndPoint="0,1">
+                        <GradientStop Color="#7f7cf1" Offset="0"/>
+                        <GradientStop Color="#d3b7ff" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <TextBlock TextWrapping="Wrap" Text="Панель администратора" Margin="12,10,0,0" Foreground="#FFFDFDFD" VerticalAlignment="Top" HorizontalAlignment="Left" FontFamily="Times New Roman" FontSize="12"/>
+            </Border>
+
+        </Border>
+
+
+        <Border MouseDown="Border_MouseDown" Grid.ColumnSpan="4" Grid.Column="2">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="1,0" EndPoint="0,1">
+                    <GradientStop Color="#41518f" Offset="0"/>
+                    <GradientStop Color="#2c386c" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <GroupBox Header="Список пользователей " Margin="0,10,0,0" Foreground="White" FontSize="14"/>
+
+        </Border>
+
+
+
+        <Button Content="Обновить" Name="btnShow" Click="btnShow_Click" HorizontalAlignment="Left" VerticalAlignment="Center" Width="81" Background="#FFAD99DA" Foreground="White" FontSize="14" Height="25" Grid.Column="1" Margin="8,0,0,0">
+            <Button.Effect>
+                <DropShadowEffect/>
+            </Button.Effect>
+        </Button>
+        <Button Content="Добавить" x:Name="btnShow_Copy1" Click="btnAdd_Click" HorizontalAlignment="Left" Margin="8,259,0,0" VerticalAlignment="Top" Width="81" Background="#FFAD99DA" Foreground="White" FontSize="14" Height="25" Grid.Column="1">
+            <Button.Effect>
+                <DropShadowEffect/>
+            </Button.Effect>
+        </Button>
+        <Button Content="Назад" Click="btnBack_Click" HorizontalAlignment="Left" Margin="8,368,0,44" Width="81" Background="#FFAD99DA" Foreground="White" FontSize="14" Grid.Column="1">
+            <Button.Effect>
+                <DropShadowEffect/>
+            </Button.Effect>
+        </Button>
+        <Button Content="Очистить" x:Name="btnShow_Copy" Click="btnClear_Click" HorizontalAlignment="Left" Margin="8,154,0,0" VerticalAlignment="Top"  Width="81" Background="#FFAD99DA" Foreground="White" FontSize="14" Height="25" Grid.Column="1" >
+            <Button.Effect>
+                <DropShadowEffect/>
+            </Button.Effect>
+        </Button>
+
+        <DataGrid   ColumnHeaderStyle="{DynamicResource ScrollBarStyle1}" Margin="39,40,30,44" x:Name="UsersGrid"  AutoGenerateColumns="False"  AlternatingRowBackground="#FFC4B0B0" SelectionMode="Single" Grid.Column="2" Background="#FFB9B5A2" BorderBrush="#FF668BAF" Foreground="Black" Grid.ColumnSpan="4">
+
 
             <DataGrid.Columns>
-                
-                <DataGridTextColumn Binding="{Binding id}" Width="*" Header="Id"/>
+
+                <DataGridTextColumn Binding="{Binding id}" Width="*" Header="Id" Foreground="#FF864E4E"/>
                 <DataGridTextColumn Binding="{Binding login}" Width="*" Header="Login"/>
                 <DataGridTextColumn Binding="{Binding password}" Width="*" Header="Password"/>
                 <DataGridTextColumn Binding="{Binding value}" Width="*" Header="Roles"/>
@@ -30,7 +87,14 @@
                 <DataGridTextColumn Binding="{Binding email}" Width="*" Header="Email"/>
             </DataGrid.Columns>
         </DataGrid >
-        <Button Content="remove" x:Name="btnRemove" Click="btnDel_Click" HorizontalAlignment="Left" Margin="445,202,0,0" VerticalAlignment="Top" Grid.Column="1"  />
+        <Button Content="Удалить" x:Name="btnRemove" Click="btnDel_Click" HorizontalAlignment="Left" Margin="8,312,0,0" VerticalAlignment="Top"  Width="81" Background="#FFAD99DA" Foreground="White" FontSize="14" Height="25" Grid.Column="1"  >
+            <Button.Effect>
+                <DropShadowEffect/>
+            </Button.Effect>
+        </Button>
+        <GridSplitter HorizontalAlignment="Left" Height="446" Margin="0,-12,0,0" VerticalAlignment="Top" Width="1" Grid.Column="2"/>
+        <GroupBox Header="Действия" Margin="1,118,407,0" Foreground="#FFFDFDFD" Grid.ColumnSpan="3"/>
+
 
 
     </Grid>

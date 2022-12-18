@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ComputerShop"
         mc:Ignorable="d"
-        Title="ShowCharacteristic" Height="450" Width="800">
+        Title="ShowCharacteristic" Height="296" Width="583">
     <Grid>
-        <DataGrid Margin="0,33,261,206" x:Name="Characteristic"  AutoGenerateColumns="False"  AlternatingRowBackground="#FFC4B0B0" SelectionMode="Single">
+        <DataGrid Background="#FF95B6D0" x:Name="Characteristic"  AutoGenerateColumns="False"  AlternatingRowBackground="#FFC4B0B0" SelectionMode="Single">
 
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding name_characteristic}" Width="*" Header="Характеристика"/>

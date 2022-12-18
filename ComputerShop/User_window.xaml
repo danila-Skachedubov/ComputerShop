@@ -5,11 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ComputerShop"
         mc:Ignorable="d"
+        ResizeMode="NoResize"
         Loaded="Window_Loaded"
         
-        Title="User_window" Height="450" Width="800">
-    <Grid>
-        <DataGrid Grid.ColumnSpan="2" Margin="0,0,261,239" x:Name="ProductGrid"  AutoGenerateColumns="False"  AlternatingRowBackground="#FFC4B0B0" SelectionMode="Single">
+        Title="Панель пользователя" Height="450" Width="800">
+    <Grid Background="#FF415AAB">
+        <DataGrid Margin="0,10,300,10" x:Name="ProductGrid"  AutoGenerateColumns="False" Background="#FFB3AC88"  AlternatingRowBackground="#FFC4B0B0" SelectionMode="Single">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding name_product}" Width="*" Header="Name product"/>
                 <DataGridTextColumn Binding="{Binding price}" Width="*" Header="Price"/>
@@ -17,11 +18,35 @@
                 <DataGridTextColumn Binding="{Binding manufacturer}" Width="*" Header="Manufacturer"/>
             </DataGrid.Columns>
         </DataGrid>
-        <ComboBox DisplayMemberPath="name_category" x:Name="Category" HorizontalAlignment="Left" Height="21" Margin="547,82,0,0" VerticalAlignment="Top" Width="196" SelectionChanged="Category_SelectionChanged"/>
-        <Button Content="Show" Click="btnShow_Click" HorizontalAlignment="Left" Margin="629,121,0,0" VerticalAlignment="Top"/>
-        <Button Content="order" Click="btnOrder_Click" HorizontalAlignment="Left" Margin="574,298,0,0" VerticalAlignment="Top"/>
-        <Button Content="Перейти к корзине" Click="GoToOrder" HorizontalAlignment="Left" Margin="152,270,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" IsReadOnly="True" Margin="590,24,0,0" TextWrapping="Wrap" x:Name="Name_user" VerticalAlignment="Top" Width="120"/>
-        <Button Content="Посмотреть характеристики" Click="btn_ShowCharack" HorizontalAlignment="Left" Margin="359,240,0,0" VerticalAlignment="Top"/>
+        <ComboBox DisplayMemberPath="name_category" x:Name="Category" HorizontalAlignment="Left" Height="21" Margin="553,83,0,0" VerticalAlignment="Top" Width="196" SelectionChanged="Category_SelectionChanged"/>
+        <Button Content="Показать" Click="btnShow_Click" HorizontalAlignment="Left" Margin="602,125,0,0" VerticalAlignment="Top" Width="94"/>
+        <Button Content="Заказать" Click="btnOrder_Click" HorizontalAlignment="Left" Margin="582,226,0,0" VerticalAlignment="Top" Height="23" Width="167"/>
+        <Button Content="Перейти к корзине" Click="GoToOrder" HorizontalAlignment="Left" Margin="582,332,0,0" VerticalAlignment="Top" Height="24" Width="168"/>
+        <TextBox HorizontalAlignment="Left" IsReadOnly="True" Margin="670,55,0,0" TextWrapping="Wrap" x:Name="Name_user" VerticalAlignment="Top" Width="0" Height="1" RenderTransformOrigin="0.5,0.5">
+            <TextBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="1" ScaleY="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TextBox.RenderTransform>
+        </TextBox>
+        <Button Content="Посмотреть характеристики" Click="btn_ShowCharack" HorizontalAlignment="Left" Margin="582,276,0,0" VerticalAlignment="Top" Height="25" Width="168"/>
+        <Separator HorizontalAlignment="Left" Margin="304,215,0,0" VerticalAlignment="Top" Width="411" RenderTransformOrigin="0.5,0.5" Height="1" >
+            <Separator.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-90.03"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Separator.RenderTransform>
+        </Separator>
+        <Label Content="Добро пожаловать, " x:Name="NAME_USER" HorizontalAlignment="Left" Margin="527,10,0,0" VerticalAlignment="Top" Foreground="White" FontSize="15"/>
+        <GroupBox Header="Фильтрация" Margin="520,45,18,254" Foreground="White" FontSize="14"/>
+        <Image Source="C:\Users\Uset\Documents\GitHub\ComputerShop\ComputerShop\Source\заказать.png" HorizontalAlignment="Left" Height="36" Margin="527,224,0,0" VerticalAlignment="Top" Width="46"/>
+        <Image Source="C:\Users\Uset\Documents\GitHub\ComputerShop\ComputerShop\Source\характеристики.png" HorizontalAlignment="Left" Height="30" Margin="533,276,0,0" VerticalAlignment="Top" Width="38"/>
+        <Image Source="C:\Users\Uset\Documents\GitHub\ComputerShop\ComputerShop\Source\корзина.png"  HorizontalAlignment="Left" Height="29" Margin="533,332,0,0" VerticalAlignment="Top" Width="28"/>
     </Grid>
 </Window>

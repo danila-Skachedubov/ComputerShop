@@ -26,6 +26,7 @@ namespace ComputerShop
             this.Closing += MainWindow_Closing;
             string name = Name;
             Name_user.Text += name;
+            NAME_USER.Content += name;   
             SqlConnection sqlCon = new SqlConnection(Settings1.Default.connectionString);
             sqlCon.Open();
             String query = "SELECT name_category FROM category";
@@ -263,7 +264,8 @@ namespace ComputerShop
             //userWindow.Close();
             OrderWindow newOrderWindow = new OrderWindow(id);
             newOrderWindow.Show();
-           // this.Close();
+
+            this.Close();
         }
 
         private void btn_ShowCharack(object sender, RoutedEventArgs e)

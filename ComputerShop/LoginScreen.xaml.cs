@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
+using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 using System.Windows;
@@ -19,7 +20,7 @@ namespace ComputerShop
         }
 
         //Data Source=DESKTOP-P5D357J\SQLEXPRESS;Initial Catalog=comp_magazin;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False
-        private void btnSubmit_Click(object sender, RoutedEventArgs e)
+        private async void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
 
             SqlConnection sqlCon = new SqlConnection(Settings1.Default.connectionString);
@@ -39,9 +40,9 @@ namespace ComputerShop
 
                     if (count > 0)
                     {
-
+                        
                         user_role();
-
+                        
                         this.Close();
                     }
                     else
@@ -61,13 +62,21 @@ namespace ComputerShop
         }
 
 
-        private void user_role()
+        private async void user_role()
         {
+
             string Name = Username.Text;
             SqlConnection sqlCon = new SqlConnection(Settings1.Default.connectionString);
             string sql = "SELECT roles FROM users WHERE Login = @un";
             sqlCon.Open();
+            string path = @"C:\Users\Uset\Documents\\GitHub\ComputerShop\ComputerShop\Logger.txt";
+            DateTime dateTime = new DateTime();
+            using (StreamWriter writer = new StreamWriter(path, true))
 
+            {
+                await writer.WriteLineAsync("Пользователь " + Username.Text + "авторизировался " + dateTime);
+
+            }
             SqlParameter nameParam = new SqlParameter("@un", Name);
 
             SqlCommand command = new SqlCommand(sql, sqlCon);

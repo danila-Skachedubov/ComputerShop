@@ -6,9 +6,9 @@
         xmlns:local="clr-namespace:ComputerShop"
         mc:Ignorable="d"
         Loaded="Window_loaded"
-        Title="OrderWindow" Height="450" Width="800">
-    <Grid>
-        <DataGrid Margin="10,10,251,229" x:Name="ProductGrid"  AutoGenerateColumns="False"  AlternatingRowBackground="#FFC4B0B0" SelectionMode="Single">
+        Title="OrderWindow" Height="368" Width="724">
+    <Grid Background="#FF415AAB" Margin="0,0,0,-6">
+        <DataGrid Margin="10,10,232,163" x:Name="ProductGrid"  AutoGenerateColumns="False"  AlternatingRowBackground="#FFC4B0B0" Background="#FFC4B0B0" SelectionMode="Single">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding TempID}" Width="*" Header="Id product"/>
                 <DataGridTextColumn Binding="{Binding name_product}" Width="*" Header="Наименование"/>
@@ -18,10 +18,15 @@
                 <DataGridTextColumn Binding="{Binding status}" Width="*" Header="Статус заказа"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Click="btnClick_Delete" Content="Delete" HorizontalAlignment="Left" Margin="46,261,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" x:Name="Summa" Margin="312,217,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <Button Click="btnClic_Buy" Content="Заказать" HorizontalAlignment="Left" Margin="312,307,0,0" VerticalAlignment="Top"/>
-        <Button Click="btnClick_Bought" Content="Покупки" HorizontalAlignment="Left" Margin="539,281,0,0" VerticalAlignment="Top"/>
-        <Button Content="Вернуться к катологу" Click="btn_Back" HorizontalAlignment="Left" Margin="432,392,0,0" VerticalAlignment="Top"/>
+        <Button Click="btnClick_Delete" Content="Delete" HorizontalAlignment="Left" Margin="539,170,0,0" VerticalAlignment="Top" Height="25" Width="90"/>
+        <Button Click="btnClic_Buy" Content="Купить" HorizontalAlignment="Left" Margin="539,53,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.607,0.403" Height="25" Width="90"/>
+        <Button Click="btnClick_Bought" Content="Покупки" HorizontalAlignment="Left" Margin="539,131,0,0" VerticalAlignment="Top" Height="25" Width="90"/>
+        <Button Content="Вернуться к катологу" Click="btn_Back" HorizontalAlignment="Left" Margin="539,91,0,0" VerticalAlignment="Top" Height="25" Width="139" />
+        <Label Content="Сумма вашего заказа:" x:Name="summa" HorizontalAlignment="Left" Margin="497,10,0,0" VerticalAlignment="Top" Foreground="White" FontSize="14"/>
+        <Image Source="C:\Users\Uset\Documents\GitHub\ComputerShop\ComputerShop\Source\купить.png" HorizontalAlignment="Left" Height="25" Margin="509,53,0,0" VerticalAlignment="Top" Width="36"/>
+        <Image Source="C:\Users\Uset\Documents\GitHub\ComputerShop\ComputerShop\Source\назад.png" HorizontalAlignment="Left" Height="25" Margin="509,91,0,0" VerticalAlignment="Top" Width="36"/>
+        <Image Source="C:\Users\Uset\Documents\GitHub\ComputerShop\ComputerShop\Source\покупки.png" HorizontalAlignment="Left" Height="25" Margin="509,131,0,0" VerticalAlignment="Top" Width="36"/>
+        <Image Source="C:\Users\Uset\Documents\GitHub\ComputerShop\ComputerShop\Source\удалить.png" HorizontalAlignment="Left" Height="25" Margin="513,170,0,0" VerticalAlignment="Top" Width="36"/>
+
     </Grid>
 </Window>
